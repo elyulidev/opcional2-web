@@ -3,72 +3,72 @@ import { CodeBlock } from '../../components/CodeBlock';
 import { Concept, Callout, Box } from '../../components/CourseComponents';
 
 export const data: ConferenciaData = {
-  titulo: "1.1 Introducción a Bun y su ecosistema de testing",
+  titulo: "1.1 Introdução ao Bun e ao seu ecossistema de testing",
   objetivos: [
-    "Comprender qué es Bun.js y por qué usarlo para testing",
-    "Conocer las ventajas sobre Jest, Vitest y otros frameworks",
-    "Entender la arquitectura del test runner de Bun",
-    "Identificar el grado de compatibilidad con Jest API"
+    "Compreender o que é o Bun.js e por que usá-lo para testing",
+    "Conhecer as vantagens sobre o Jest, Vitest e outros frameworks",
+    "Entender a arquitetura do test runner do Bun",
+    "Identificar o grau de compatibilidade com o Jest API"
   ],
   contenido: (
     <>
-      <Concept title="¿Qué es Bun.js?">
+      <Concept title="O que é o Bun.js?">
         <p className="mb-4">
-          <strong>Bun</strong> es un runtime de JavaScript/TypeScript ultra-rápido, todo en uno, que incluye:
+          <strong>Bun</strong> é um runtime de JavaScript/TypeScript ultra-rápido, tudo-em-um, que inclui:
         </p>
         <ul className="list-disc pl-6 space-y-2 mb-4 font-mono text-[0.9em]">
-          <li>Un runtime de JavaScript (alternativa a Node.js y Deno)</li>
-          <li>Un bundler integrado</li>
-          <li>Un transpilador de TypeScript</li>
-          <li>Un package manager (como npm/yarn/pnpm)</li>
-          <li>Un test runner nativo ⚡</li>
+          <li>Um runtime de JavaScript (alternativa ao Node.js e Deno)</li>
+          <li>Um bundler integrado</li>
+          <li>Um transpilador de TypeScript</li>
+          <li>Um gestor de pacotes (como npm/yarn/pnpm)</li>
+          <li>Um test runner nativo ⚡</li>
         </ul>
         <p>
-          Fue creado por Jarred Sumner y está escrito en <strong className="text-primary text-2xl">Zig</strong>, lo que lo hace extremadamente rápido.
+          Foi criado por Jarred Sumner e está escrito em <strong className="text-primary text-2xl">Zig</strong>, o que o torna extremamente rápido.
         </p>
       </Concept>
 
-      <h2>¿Por qué usar Bun para testing?</h2>
-      <h3>🚀 Velocidad extrema</h3>
-      <Callout title="Comparativa de velocidad" type="tip">
+      <h2>Por que usar o Bun para testing?</h2>
+      <h3>🚀 Velocidade extrema</h3>
+      <Callout title="Comparação de velocidade" type="tip">
         <ul className="space-y-2 mb-4 font-mono">
-          <li><strong>Jest:</strong> ~3-5 segundos para 100 tests</li>
-          <li><strong>Vitest:</strong> ~1-2 segundos para 100 tests</li>
-          <li className="text-primary font-black text-xl"><strong>Bun:</strong> ~0.3-0.5 segundos para 100 tests ⚡</li>
+          <li><strong>Jest:</strong> ~3-5 segundos para 100 testes</li>
+          <li><strong>Vitest:</strong> ~1-2 segundos para 100 testes</li>
+          <li className="text-primary font-black text-xl"><strong>Bun:</strong> ~0.3-0.5 segundos para 100 testes ⚡</li>
         </ul>
-        <p className="font-bold border-t-2 border-zinc-900/20 dark:border-zinc-100/20 pt-2 border-dashed">Bun es hasta <span className="text-2xl text-primary font-black">10-20x</span> más rápido que Jest en muchos casos.</p>
+        <p className="font-bold border-t-2 border-zinc-900/20 dark:border-zinc-100/20 pt-2 border-dashed">O Bun é até <span className="text-2xl text-primary font-black">10-20x</span> mais rápido que o Jest em muitos casos.</p>
       </Callout>
 
-      <h3>⚡ Todo integrado</h3>
-      <p>No necesitas instalar dependencias adicionales:</p>
+      <h3>⚡ Tudo integrado</h3>
+      <p>Não precisas de instalar dependências adicionais:</p>
       <CodeBlock 
         language="bash" 
-        code={`# Con Jest necesitas:
+        code={`# Com o Jest precisas de:
 npm install --save-dev jest @types/jest ts-jest
 
-# Con Bun ya está todo incluido:
+# Com o Bun já está tudo incluído:
 bun install bun
-# ¡Ya tienes testing listo!`} 
+# Já tens o testing pronto!`} 
       />
 
-      <h3>🎯 Compatibilidad con Jest API</h3>
-      <p>Si conoces Jest, ya conoces Bun testing. Usa la misma sintaxis:</p>
+      <h3>🎯 Compatibilidade com o Jest API</h3>
+      <p>Se conheces o Jest, já conheces o testing do Bun. Usa a mesma sintaxe:</p>
       <CodeBlock 
         language="javascript" 
         code={`import { describe, test, expect } from "bun:test";
 
-describe("mi grupo de tests", () => {
-  test("suma 1 + 1", () => {
+describe("o meu grupo de testes", () => {
+  test("soma 1 + 1", () => {
     expect(1 + 1).toBe(2);
   });
 });`} 
       />
 
       <h3>🔥 TypeScript nativo</h3>
-      <p>No necesitas configuración extra. Bun ejecuta TypeScript directamente:</p>
+      <p>Não precisas de configuração extra. O Bun executa TypeScript diretamente:</p>
       <CodeBlock 
         language="typescript" 
-        code={`// archivo.test.ts
+        code={`// ficheiro.test.ts
 import { test, expect } from "bun:test";
 
 interface User {
@@ -76,7 +76,7 @@ interface User {
   age: number;
 }
 
-test("TypeScript works out of the box", () => {
+test("TypeScript funciona nativamente", () => {
   const user: User = { name: "Ana", age: 25 };
   expect(user.name).toBe("Ana");
 });`} 
@@ -86,21 +86,21 @@ test("TypeScript works out of the box", () => {
 
       <h2>Arquitectura del Test Runner de Bun</h2>
 
-      <h3>Componentes principales:</h3>
+      <h3>Componentes principais:</h3>
       <CodeBlock 
         language="text" 
         code={`┌─────────────────────────────────────┐
 │       BUN TEST RUNNER               │
 ├─────────────────────────────────────┤
-│ 1. Test Discovery                   │ ← Encuentra archivos *.test.ts
-│    - Busca archivos de test         │
-│    - Carga módulos                  │
+│ 1. Test Discovery                   │ ← Encontra ficheiros *.test.ts
+│    - Procura ficheiros de teste     │
+│    - Carrega módulos                │
 ├─────────────────────────────────────┤
-│ 2. Test Execution Engine            │ ← Motor de ejecución rápido
-│    - Paralelización automática      │
-│    - Isolation entre tests          │
+│ 2. Test Execution Engine            │ ← Motor de execução rápido
+│    - Paralelização automática      │
+│    - Isolamento entre testes        │
 ├─────────────────────────────────────┤
-│ 3. Assertion Library                │ ← Compatible con Jest matchers
+│ 3. Assertion Library                │ ← Compatível com o Jest matchers
 │    - expect() API                   │
 │    - Matchers integrados            │
 ├─────────────────────────────────────┤
@@ -108,9 +108,9 @@ test("TypeScript works out of the box", () => {
 │    - jest.fn()                      │
 │    - jest.mock()                    │
 ├─────────────────────────────────────┤
-│ 5. Reporter                         │ ← Resultados en consola
-│    - Output formateado              │
-│    - Coverage reports               │
+│ 5. Reporter                         │ ← Resultados na consola
+│    - Output formatado               │
+│    - Relatórios de Coverage         │
 └─────────────────────────────────────┘`} 
       />
 
@@ -180,35 +180,35 @@ jest.mock()
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
         <Box className="border-green-500 bg-green-50 dark:bg-green-950/10 shadow-[6px_6px_0px_#22c55e]">
           <h3 className="text-2xl font-black uppercase mb-4 flex items-center gap-2">
-            <span className="text-3xl">✅</span> Perfecto para:
+            <span className="text-3xl">✅</span> Perfeito para:
           </h3>
           <ul className="list-none space-y-2 font-bold">
-            <li>• Aplicaciones nuevas desde cero</li>
-            <li>• APIs y backends Bun</li>
-            <li>• Maximizar velocidad en CI/CD</li>
-            <li>• Proyectos TypeScript puros</li>
+            <li>• Aplicações novas desde o zero</li>
+            <li>• APIs e backends com o Bun</li>
+            <li>• Maximizar a velocidade em CI/CD</li>
+            <li>• Projetos TypeScript puros</li>
           </ul>
         </Box>
 
         <Box className="border-amber-500 bg-amber-50 dark:bg-amber-950/10 shadow-[6px_6px_0px_#f59e0b]">
           <h3 className="text-2xl font-black uppercase mb-4 flex items-center gap-2">
-            <span className="text-3xl">🤔</span> Considera si:
+            <span className="text-3xl">🤔</span> Considera se:
           </h3>
           <ul className="list-none space-y-2 font-bold">
-            <li>• Necesitas plugins Jest específicos</li>
-            <li>• Proyectos legacy muy masivos</li>
-            <li>• Features de Jest no soportadas</li>
-            <li>• Ecosistema Node.js crítico</li>
+            <li>• Precisas de plugins do Jest específicos</li>
+            <li>• Projetos legacy muito massivos</li>
+            <li>• Funcionalidades do Jest não suportadas</li>
+            <li>• Ecossistema Node.js crítico</li>
           </ul>
         </Box>
       </div>
 
-      <h2>Comparativa rápida</h2>
+      <h2>Comparação rápida</h2>
       <div className="overflow-x-auto border-4 border-zinc-900 dark:border-zinc-100 shadow-[8px_8px_0px_#ec4899] dark:shadow-[8px_8px_0px_#ec4899] mb-12">
         <table className="w-full text-left border-collapse bg-light-surface dark:bg-dark-surface">
           <thead>
             <tr className="bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 uppercase font-black tracking-wider border-b-4 border-zinc-900 dark:border-zinc-100">
-              <th className="p-4 border-r-4 border-zinc-900 dark:border-white">Feature</th>
+              <th className="p-4 border-r-4 border-zinc-900 dark:border-white">Funcionalidade</th>
               <th className="p-4 border-r-4 border-zinc-900 dark:border-white">Jest</th>
               <th className="p-4 border-r-4 border-zinc-900 dark:border-white">Vitest</th>
               <th className="p-4">Bun</th>
@@ -216,31 +216,31 @@ jest.mock()
           </thead>
           <tbody className="font-medium text-lg">
             <tr className="border-b-4 border-zinc-900 dark:border-zinc-100 dark:text-zinc-200">
-              <td className="p-4 font-black bg-zinc-100 dark:bg-zinc-800 border-r-4 border-zinc-900 dark:border-zinc-100">Velocidad</td>
+              <td className="p-4 font-black bg-zinc-100 dark:bg-zinc-800 border-r-4 border-zinc-900 dark:border-zinc-100">Velocidade</td>
               <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">🐌 Lento</td>
-              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">🏃 Rápido</td>
+              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">Runner Rápido</td>
               <td className="p-4 text-primary font-black">🚀 Ultra rápido</td>
             </tr>
             <tr className="border-b-4 border-zinc-900 dark:border-zinc-100 dark:text-zinc-200">
               <td className="p-4 font-black bg-zinc-100 dark:bg-zinc-800 border-r-4 border-zinc-900 dark:border-zinc-100">Setup</td>
-              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">📦 Complejo</td>
-              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">📦 Medio</td>
-              <td className="p-4 text-green-600 dark:text-green-400 font-bold">✅ Simple</td>
+              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">📦 Complexo</td>
+              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">📦 Médio</td>
+              <td className="p-4 text-green-600 dark:text-green-400 font-bold">✅ Simples</td>
             </tr>
             <tr className="border-b-4 border-zinc-900 dark:border-zinc-100 dark:text-zinc-200">
               <td className="p-4 font-black bg-zinc-100 dark:bg-zinc-800 border-r-4 border-zinc-900 dark:border-zinc-100">TypeScript</td>
-              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">⚙️ Config necesaria</td>
-              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">⚙️ Config necesaria</td>
+              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">⚙️ Requer configuração</td>
+              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">⚙️ Requer configuração</td>
               <td className="p-4 text-green-600 dark:text-green-400 font-bold">✅ Nativo</td>
             </tr>
             <tr className="border-b-4 border-zinc-900 dark:border-zinc-100 dark:text-zinc-200">
-              <td className="p-4 font-black bg-zinc-100 dark:bg-zinc-800 border-r-4 border-zinc-900 dark:border-zinc-100">Ecosistema</td>
+              <td className="p-4 font-black bg-zinc-100 dark:bg-zinc-800 border-r-4 border-zinc-900 dark:border-zinc-100">Ecossistema</td>
               <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">🌟 Maduro</td>
-              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">🌱 Creciendo</td>
-              <td className="p-4">🌱 Nuevo</td>
+              <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">🌱 Em crescimento</td>
+              <td className="p-4">🌱 Novo</td>
             </tr>
             <tr className="dark:text-zinc-200">
-              <td className="p-4 font-black bg-zinc-100 dark:bg-zinc-800 border-r-4 border-zinc-900 dark:border-zinc-100">Compatibilidad</td>
+              <td className="p-4 font-black bg-zinc-100 dark:bg-zinc-800 border-r-4 border-zinc-900 dark:border-zinc-100">Compatibilidade</td>
               <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">100% Jest</td>
               <td className="p-4 border-r-4 border-zinc-900 dark:border-zinc-100">~95% Jest</td>
               <td className="p-4">~90% Jest</td>
@@ -249,8 +249,8 @@ jest.mock()
         </table>
       </div>
 
-      <Concept title="Tu primer Glance">
-        <p className="mb-6">Observa la simplicidad. Un archivo de lógica y su correspondiente test, sin carpetas <code>__tests__</code> ni configuraciones pesadas.</p>
+      <Concept title="O teu primeiro Olhar">
+        <p className="mb-6">Observa a simplicidade. Um ficheiro de lógica e o seu teste correspondente, sem pastas <code>__tests__</code> ou configurações pesadas.</p>
         
         <div className="space-y-4">
           <CodeBlock 
@@ -280,7 +280,7 @@ describe("Calculator", () => {
         </div>
       </Concept>
 
-      <p><strong>Ejecutar:</strong></p>
+      <p><strong>Executar:</strong></p>
       <CodeBlock 
         language="bash" 
         code={`bun test`} 
@@ -297,33 +297,33 @@ describe("Calculator", () => {
 Ran 2 tests in 12ms`} 
       />
 
-      <Callout title="Conceptos clave para recordar" type="warning" className="my-12">
+      <Callout title="Conceitos-chave a recordar" type="warning" className="my-12">
         <ul className="list-none space-y-3 font-bold text-lg">
-          <li className="flex gap-2 items-center"><span className="text-amber-600 dark:text-amber-400">→</span> Bun es un runtime completo, no solo una herramienta de testing.</li>
-          <li className="flex gap-2 items-center"><span className="text-amber-600 dark:text-amber-400">→</span> Testing está incluido de fábrica - no necesitas instalaciones extra.</li>
-          <li className="flex gap-2 items-center"><span className="text-amber-600 dark:text-amber-400">→</span> Compatible con Jest - fácil de aprender si conoces Jest.</li>
-          <li className="flex gap-2 items-center"><span className="text-amber-600 dark:text-amber-400">→</span> Ultra rápido - optimizado para velocidad desde el diseño.</li>
-          <li className="flex gap-2 items-center"><span className="text-amber-600 dark:text-amber-400">→</span> TypeScript nativo - cero configuración necesaria.</li>
+          <li className="flex gap-2 items-center"><span className="text-amber-600 dark:text-amber-400">→</span> O Bun é um runtime completo, não apenas uma ferramenta de testing.</li>
+          <li className="flex gap-2 items-center"><span className="text-amber-600 dark:text-amber-400">→</span> O testing já vem incluído de fábrica - não precisas de instalações extra.</li>
+          <li className="flex gap-2 items-center"><span className="text-amber-600 dark:text-amber-400">→</span> Compatível com o Jest - fácil de aprender se já conheces o Jest.</li>
+          <li className="flex gap-2 items-center"><span className="text-amber-600 dark:text-amber-400">→</span> Ultra rápido - otimizado para velocidade desde o design.</li>
+          <li className="flex gap-2 items-center"><span className="text-amber-600 dark:text-amber-400">→</span> TypeScript nativo - zero configuração necessária.</li>
         </ul>
       </Callout>
       
       <p className="mt-12 text-xl font-bold p-6 bg-secondary text-white border-4 border-zinc-900 dark:border-white shadow-[6px_6px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_rgba(255,255,255,1)]">
-        En la próxima clase (1.2) aprenderemos a instalar Bun, configurar un proyecto desde cero, y escribir nuestros primeros tests reales.
+        Na próxima aula (1.2) aprenderemos a instalar o Bun, configurar um projeto do zero, e escrever os nossos primeiros testes reais.
       </p>
     </>
   ),
   ejercicios: [
     {
-      titulo: "Ejercicio 1: Investigación",
-      descripcion: "Visita la documentación oficial de Bun (https://bun.sh) y lee la sección de testing. Anota 3 diferencias que encuentres entre Bun y tu framework de testing actual (o Jest si no has usado ninguno)."
+      titulo: "Exercício 1: Investigação",
+      descripcion: "Visita a documentação oficial do Bun (https://bun.sh) e lê a secção de testing. Anota 3 diferenças que encontres entre o Bun e o teu framework de testing atual (ou o Jest se ainda não usaste nenhum)."
     },
     {
-      titulo: "Ejercicio 2: Reflexión",
-      descripcion: "Responde: ¿Por qué crees que Bun es más rápido que Jest? ¿En qué tipo de proyecto considerarías usar Bun para testing? ¿Qué preocupaciones tendrías al adoptar Bun en un proyecto existente?"
+      titulo: "Exercício 2: Reflexão",
+      descripcion: "Responde: Porque acreditas que o Bun é mais rápido que o Jest? Em que tipo de projeto considerarias usar o Bun para testing? Que preocupações terias ao adotar o Bun num projeto existente?"
     },
     {
-      titulo: "Ejercicio 3: Comparación",
-      descripcion: "Investiga y compara: Tiempo de ejecución de tests en Jest vs Bun (busca benchmarks). Tamaño de node_modules con Jest vs sin dependencias adicionales con Bun. Comunidad y soporte actual de ambas herramientas."
+      titulo: "Exercício 3: Comparação",
+      descripcion: "Investiga e compara: Tempo de execução de testes no Jest vs Bun (procura benchmarks). Tamanho de node_modules com Jest vs sem dependências adicionais com o Bun. Comunidade e suporte atual de ambas as ferramentas."
     }
   ]
 };

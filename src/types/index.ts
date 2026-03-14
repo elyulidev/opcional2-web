@@ -33,8 +33,9 @@ export interface Bibliografia {
   titulo: string;
   autor: string;
   ano: string;
-  tipo: 'Oficial' | 'Libro' | 'Articulo';
+  tipo: 'Oficial' | 'Livro' | 'Artigo';
   enlace?: string;
+  downloadUrl?: string;
 }
 
 export interface CriterioEvaluacion {
