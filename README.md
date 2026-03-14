@@ -1,75 +1,56 @@
-# React + TypeScript + Vite
+# Testing com Bun (Opcional 2)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Testing com Bun Logo](public/logo.png)
 
-Currently, two official plugins are available:
+Uma plataforma educacional interativa de "Testing com Bun.js" desenvolvida para estudantes do 4º ano universitário na disciplina Opcional 2. Construída com um design único **Neo-Brutalist Technical**, esta aplicação apresenta o paradigma moderno de testes com o runtime ultra-rápido Bun.js.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Tecnologias e Stack
 
-## React Compiler
+A aplicação foi construída visando máxima performance, testabilidade e tipagem severa:
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **Framework Core**: React 19 + Vite
+- **Linguagem**: TypeScript
+- **Estilo e UI**: Tailwind CSS v4
+- **Roteamento**: React Router DOM (Single Page Application)
+- **Ícones**: Lucide React
+- **Estética**: Neo-Brutalist Technical (Alto contraste, grandes sombras, tipografia pesada `Bricolage Grotesque` e `Manrope`)
+- **Runtime e Ferramentas**: Bun.js (para gerenciamento de pacotes, dev server e testes)
 
-Note: This will impact Vite dev & build performances.
+## ✨ Funcionalidades
 
-## Expanding the ESLint configuration
+- **Design Neo-Brutalist**: Interface única, agressiva e acadêmico/técnica com modo Claro/Escuro (Dark Mode).
+- **Conteúdo Didático Dinâmico**: Os módulos e conferências (Módulos 1 a 9) sobre testes com Bun são geridos de forma modular localmente com roteamento condicional.
+- **Sistema Condicional de IA**: Uma janela de chat para integração futura (com feedback local implementado) via Gemini API.
+- **Baixar Regulamento**: Um sistema de avaliação detalhado com pesos que pode ser exportado para `.txt` internamente (na aba `Avaliação`).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠 Como Rodar o Projeto Localmente
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Certifique-se de que de que tenha o [Bun](https://bun.sh/) instalado na sua máquina!
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Clone o repositório ou acesse a pasta raiz:
+   ```bash
+   cd opcional2-web
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. Instale todas as dependências do projeto (ultra-rápido usando Bun):
+   ```bash
+   bun install
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   bun run dev
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+4. Acesse a aplicação, tipicamente em `http://localhost:5173`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📁 Estrutura do Projeto
+
+- `src/components/`: Componentes reutilizáveis (Layout, Sidebar, ChatModal, CodeBlock, etc).
+- `src/pages/`: As páginas principais da aplicação (Inicio, Avaliacao, Bibliografia, Conferencias, etc).
+- `src/content/`: Toda a documentação dos cursos dividida em módulos. Cada módulo (`modulo-1`, `modulo-2`, etc) possui suas próprias aulas e código para o `ConferenceReader`.
+- `public/`: Mídias locais como o `logo.png` e `favicon.png`.
+
+## 📜 Licença
+
+Este projeto é um material acadêmico para fins de estudo e ensino de testes modernos com Bun.js.
