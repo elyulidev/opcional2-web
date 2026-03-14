@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400..800&family=Manrope:wght@200..800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--color-primary: #ec4899; /* Bun Pink - Pink-500 */
+	--color-primary-hover: #db2777; /* Pink-600 */
+	--color-secondary: #06b6d4; /* Electric Cyan - Cyan-500 */
+	--color-secondary-hover: #0891b2; /* Cyan-600 */
+	
+	--color-dark-bg: #000000; /* True Black */
+	--color-dark-surface: #09090b; /* Zinc-950 */
+	--color-dark-border: rgba(255, 255, 255, 0.1);
+
+	--color-light-bg: #ffffff; /* True White */
+	--color-light-surface: #f4f4f5; /* Zinc-100 */
+	--color-light-border: rgba(0, 0, 0, 0.1);
+
+	--font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+	--font-serif: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+	html,
+	body {
+		@apply antialiased h-full w-full;
+	}
+
+	body {
+		@apply bg-light-bg text-zinc-900 font-sans transition-colors duration-300;
+	}
+
+	.dark body {
+		@apply bg-dark-bg text-zinc-100;
+	}
+
+	#root {
+		@apply flex h-full w-full overflow-hidden;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		@apply font-serif font-bold text-zinc-950 tracking-tight;
+	}
+
+	.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+		@apply text-white;
+	}
+}
+
+@layer utilities {
+	.noise-bg {
+		position: relative;
+	}
+	.noise-bg::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+		opacity: 0.03;
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+		mix-blend-mode: multiply;
+	}
+	.dark .noise-bg::before {
+		opacity: 0.04;
+		mix-blend-mode: overlay;
+	}
+}
