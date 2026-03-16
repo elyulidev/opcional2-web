@@ -20,7 +20,7 @@ export const MODULOS: Modulo[] = [
 			},
 			{
 				id: "1.3",
-				path: "modulo-1/conferencia-1",
+				path: "modulo-1/conferencia-3",
 				titulo: "1.3 O teu primeiro teste com o Bun",
 			},
 		],
