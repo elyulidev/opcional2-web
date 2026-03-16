@@ -16,10 +16,10 @@ export function Callout({
 	className,
 }: CalloutProps) {
 	const styles = {
-		info: "bg-cyan-100 dark:bg-cyan-950/30 border-cyan-500 shadow-[4px_4px_0px_#06b6d4]",
+		info: "bg-cyan-100 dark:bg-cyan-950/30 border-cyan-500 brutalist-shadow-secondary",
 		warning:
 			"bg-amber-100 dark:bg-amber-950/30 border-amber-500 shadow-[4px_4px_0px_#f59e0b]",
-		tip: "bg-fuchsia-100 dark:bg-fuchsia-950/30 border-primary shadow-[4px_4px_0px_#ec4899]",
+		tip: "bg-fuchsia-100 dark:bg-fuchsia-950/30 border-primary brutalist-shadow-primary",
 		danger:
 			"bg-rose-100 dark:bg-rose-950/30 border-rose-500 shadow-[4px_4px_0px_#f43f5e]",
 	};
@@ -41,7 +41,7 @@ export function Callout({
 				className,
 			)}
 		>
-			<div className='absolute -top-5 -left-5 bg-zinc-900 dark:bg-zinc-100 p-2 border-2 border-transparent shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_rgba(255,255,255,1)] rotate-3 z-10'>
+			<div className='absolute -top-5 -left-5 bg-zinc-900 dark:bg-zinc-100 p-2 border-2 border-transparent brutalist-shadow rotate-3 z-10'>
 				{icons[type]}
 			</div>
 			{title && (
@@ -65,8 +65,8 @@ export function Concept({
 }) {
 	return (
 		<div className='my-10 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 p-8 border-4 border-transparent shadow-[8px_8px_0px_#06b6d4] hover:translate-x-1 hover:-translate-y-1 transition-transform'>
-			<h3 className='text-3xl font-black font-serif uppercase tracking-tight mb-4 flex items-center gap-3'>
-				<span className='bg-primary text-white px-3 py-1 border-2 border-white dark:border-zinc-900 shadow-[2px_2px_0px_rgba(255,255,255,1)] dark:shadow-[2px_2px_0px_rgba(0,0,0,1)] -rotate-2'>
+			<h3 className='text-3xl font-black font-serif uppercase tracking-tight mb-4 flex items-center gap-3 text-white dark:text-zinc-900'>
+				<span className='bg-primary text-white px-3 py-1 border-2 border-white dark:border-zinc-900 brutalist-shadow -rotate-2'>
 					DEF
 				</span>
 				{title}
@@ -88,7 +88,7 @@ export function Box({
 	return (
 		<div
 			className={cn(
-				"p-6 my-6 bg-light-surface dark:bg-dark-surface border-4 border-zinc-900 dark:border-zinc-100 shadow-[6px_6px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_rgba(255,255,255,1)]",
+				"p-6 my-6 bg-light-surface dark:bg-dark-surface border-4 border-zinc-900 dark:border-zinc-100 brutalist-shadow-lg",
 				className,
 			)}
 		>

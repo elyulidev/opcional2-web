@@ -37,7 +37,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
         )}
       >
         <div className="p-6 border-b-2 border-light-border dark:border-dark-border bg-light-bg dark:bg-dark-bg flex items-center gap-3">
-          <img src="/logo.png" alt="Testing com Bun Logo" className="w-12 h-12 object-contain border-2 border-zinc-900 dark:border-zinc-100 shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_rgba(255,255,255,1)]" />
+          <img src="/logo.png" alt="Testing com Bun Logo" className="w-12 h-12 object-contain border-2 border-zinc-900 dark:border-zinc-100 brutalist-shadow" />
           <h2 className="text-2xl font-serif font-black text-zinc-900 dark:text-white flex flex-col uppercase tracking-tighter leading-none">
             Testing <span className="text-primary font-mono text-xl tracking-normal lowercase mt-1">com Bun</span>
           </h2>
@@ -55,7 +55,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
                   className={cn(
                     "flex items-center gap-3 px-4 py-3 border-2 transition-all font-bold uppercase tracking-wide text-sm",
                     isActive 
-                      ? "bg-secondary text-white border-secondary dark:border-secondary shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgba(255,255,255,1)] -translate-x-0.5 -translate-y-0.5" 
+                      ? "bg-secondary text-white border-secondary dark:border-secondary brutalist-shadow -translate-x-0.5 -translate-y-0.5" 
                       : "bg-light-bg dark:bg-dark-bg text-zinc-700 dark:text-zinc-300 border-light-border dark:border-dark-border hover:border-zinc-900 dark:hover:border-zinc-100"
                   )}
                   onClick={() => {

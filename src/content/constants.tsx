@@ -15,7 +15,7 @@ export const MODULOS: Modulo[] = [
 			},
 			{
 				id: "1.2",
-				path: "modulo-1/conferencia-1",
+				path: "modulo-1/conferencia-2",
 				titulo: "1.2 Instalação e configuração inicial",
 			},
 			{
