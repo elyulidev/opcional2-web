@@ -16,6 +16,11 @@
       "sourceType": "github",
       "computedHash": "f39617add5f4853e837aa7f09dfbe8dc6527b6debfa91d4ca89de5ed0ecd614a"
     },
+    "tailwind-design-system": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "0fc7b79d08ee5168d46c6887014cbe5bd02f2c5e458858470e20fc8ecedefb46"
+    },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
