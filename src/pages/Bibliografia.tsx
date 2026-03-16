@@ -1,5 +1,5 @@
 import { BIBLIOGRAFIA } from '../content/constants';
-import { ExternalLink, Book, FileText, Globe } from 'lucide-react';
+import { ExternalLink, Book, FileText, Globe, Download } from 'lucide-react';
 
 export function Bibliografia() {
   return (
@@ -18,8 +18,8 @@ export function Bibliografia() {
           {BIBLIOGRAFIA.map((item, idx) => (
             <div key={idx} className="p-6 sm:p-8 flex items-start gap-6 bg-light-surface dark:bg-dark-surface hover:bg-white dark:hover:bg-zinc-900 transition-colors group">
               <div className="mt-1 shrink-0 w-16 h-16 bg-zinc-900 dark:bg-white flex items-center justify-center border-2 border-transparent shadow-[4px_4px_0px_#ec4899] dark:shadow-[4px_4px_0px_#ec4899] group-hover:-rotate-6 transition-transform">
-                {item.tipo === 'Libro' && <Book className="w-8 h-8 text-white dark:text-zinc-900" />}
-                {item.tipo === 'Articulo' && <FileText className="w-8 h-8 text-white dark:text-zinc-900" />}
+                {item.tipo === 'Livro' && <Book className="w-8 h-8 text-white dark:text-zinc-900" />}
+                {item.tipo === 'Artigo' && <FileText className="w-8 h-8 text-white dark:text-zinc-900" />}
                 {item.tipo === 'Oficial' && <Globe className="w-8 h-8 text-white dark:text-zinc-900" />}
               </div>
               <div className="flex-1 min-w-0">
@@ -36,16 +36,28 @@ export function Bibliografia() {
                   <span className="text-primary">•</span>
                   <span className="text-zinc-900 dark:text-white bg-secondary/20 px-2 py-0.5">{item.ano}</span>
                 </p>
-                {item.enlace && (
-                  <a 
-                    href={item.enlace}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-4 py-2 text-sm font-bold uppercase hover:bg-secondary dark:hover:bg-secondary transition-colors border-2 border-transparent shadow-[2px_2px_0px_#ec4899] dark:shadow-[2px_2px_0px_#ec4899] hover:translate-x-1 hover:translate-y-1 hover:shadow-none w-fit"
-                  >
-                    Acessar Recurso <ExternalLink className="w-4 h-4 ml-1" />
-                  </a>
-                )}
+                
+                <div className="flex flex-wrap gap-4">
+                  {item.enlace && (
+                    <a 
+                      href={item.enlace}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-4 py-2 text-sm font-bold uppercase hover:bg-secondary dark:hover:bg-secondary transition-colors border-2 border-transparent shadow-[2px_2px_0px_#ec4899] dark:shadow-[2px_2px_0px_#ec4899] hover:translate-x-1 hover:translate-y-1 hover:shadow-none w-fit"
+                    >
+                      Aceder ao Recurso <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
+                  {item.downloadUrl && (
+                    <a 
+                      href={item.downloadUrl}
+                      download
+                      className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 text-sm font-bold uppercase hover:bg-primary-hover transition-colors border-2 border-transparent shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_rgba(255,255,255,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none w-fit"
+                    >
+                      Descarregar PDF <Download className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           ))}
