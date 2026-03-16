@@ -107,81 +107,93 @@ export function ChatModal() {
 	}
 
 	return (
-		<div className='fixed bottom-6 right-6 w-85 md:w-100 h-137.5 md:h-150 max-h-[85vh] border-4 border-zinc-900 dark:border-zinc-100 shadow-[8px_8px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_rgba(255,255,255,0.2)] bg-light-bg dark:bg-dark-bg flex flex-col z-50 overflow-hidden animate-in slide-in-from-bottom-5'>
-			<div className='flex items-center justify-between p-4 border-b-4 border-zinc-900 dark:border-zinc-100 bg-secondary dark:bg-secondary text-white'>
-				<div className='flex items-center gap-3'>
-					<div className='p-2 bg-white text-secondary border-2 border-zinc-900 dark:border-white shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_rgba(255,255,255,1)]'>
-						<Bot className='w-5 h-5' />
-					</div>
-					<div>
-						<h3 className='font-bold text-lg leading-none'>TestBot IA</h3>
-						<p className='text-xs opacity-90 font-medium'>
-							Assistente do curso
-						</p>
+		<div className='fixed inset-0 pointer-events-none z-50 max-w-7xl mx-auto'>
+			<div className='relative h-full w-full'>
+				<div className='absolute bottom-6 right-14 pointer-events-auto'>
+					<div className='w-85 md:w-100 h-137.5 md:h-150 max-h-[85vh] border-4 border-zinc-900 dark:border-zinc-100 shadow-[8px_8px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_rgba(255,255,255,0.2)] bg-light-bg dark:bg-dark-bg flex flex-col z-50 overflow-hidden animate-in slide-in-from-bottom-5'>
+						<div className='flex items-center justify-between p-4 border-b-4 border-zinc-900 dark:border-zinc-100 bg-secondary dark:bg-secondary text-white'>
+							<div className='flex items-center gap-3'>
+								<div className='p-2 bg-white text-secondary border-2 border-zinc-900 dark:border-white shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_rgba(255,255,255,1)]'>
+									<Bot className='w-5 h-5' />
+								</div>
+								<div>
+									<h3 className='font-bold text-lg leading-none'>TestBot IA</h3>
+									<p className='text-xs opacity-90 font-medium'>
+										Assistente do curso
+									</p>
+								</div>
+							</div>
+							<button
+								onClick={() => setIsOpen(false)}
+								className='text-white hover:text-zinc-900 dark:hover:text-black transition-colors p-1.5 border-2 border-transparent hover:border-zinc-900 dark:hover:border-zinc-100 hover:bg-white'
+							>
+								<X className='w-6 h-6' />
+							</button>
+						</div>
+
+						<div className='flex-1 overflow-y-auto p-4 space-y-4 bg-light-surface dark:bg-dark-surface noise-bg'>
+							{messages.map((m, i) => (
+								<div
+									key={i}
+									className={cn(
+										"flex w-full flex-col",
+										m.role === "user" ? "items-end" : "items-start",
+									)}
+								>
+									<div
+										className={cn(
+											"px-4 py-3 text-sm max-w-[85%] leading-relaxed border-2 border-zinc-900 dark:border-zinc-100 shadow-[3px_3px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_rgba(255,255,255,0.2)]",
+											m.role === "user"
+												? "bg-primary text-white"
+												: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100",
+										)}
+									>
+										{m.content}
+									</div>
+								</div>
+							))}
+							{isLoading && (
+								<div className='max-w-[85%] px-4 py-3 border-2 border-zinc-900 dark:border-zinc-100 bg-white dark:bg-zinc-900 text-zinc-500 shadow-[3px_3px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_rgba(255,255,255,0.2)] text-sm flex gap-1 items-center'>
+									<span className='animate-bounce'>●</span>
+									<span
+										className='animate-bounce'
+										style={{ animationDelay: "0.2s" }}
+									>
+										●
+									</span>
+									<span
+										className='animate-bounce'
+										style={{ animationDelay: "0.4s" }}
+									>
+										●
+									</span>
+								</div>
+							)}
+							<div ref={messagesEndRef} />
+						</div>
+
+						<form
+							onSubmit={handleSubmit}
+							className='p-4 border-t-4 border-zinc-900 dark:border-zinc-100 bg-light-bg dark:bg-dark-bg flex gap-3'
+						>
+							<input
+								type='text'
+								value={input}
+								onChange={(e) => setInput(e.target.value)}
+								placeholder='Pergunte sobre Bun.js...'
+								className='flex-1 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 px-4 py-2 border-2 border-zinc-900 dark:border-zinc-100 text-sm focus:outline-none focus:border-secondary focus:ring-0 shadow-[3px_3px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_rgba(255,255,255,0.2)] transition-all font-medium'
+							/>
+							<button
+								type='submit'
+								disabled={!input.trim() || isLoading}
+								className='p-3 bg-secondary hover:bg-secondary-hover text-white border-2 border-zinc-900 dark:border-zinc-100 disabled:opacity-50 transition-colors shadow-[3px_3px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_rgba(255,255,255,0.2)] active:translate-x-1 active:translate-y-1 active:shadow-none'
+							>
+								<Send className='w-5 h-5' />
+							</button>
+						</form>
 					</div>
 				</div>
-				<button
-					onClick={() => setIsOpen(false)}
-					className='text-white hover:text-zinc-900 dark:hover:text-black transition-colors p-1.5 border-2 border-transparent hover:border-zinc-900 dark:hover:border-zinc-100 hover:bg-white'
-				>
-					<X className='w-6 h-6' />
-				</button>
 			</div>
-
-			<div className='flex-1 overflow-y-auto p-4 space-y-4 bg-light-surface dark:bg-dark-surface noise-bg'>
-				{messages.map((m, i) => (
-					<div
-						key={i}
-						className={cn(
-							"flex w-full flex-col",
-							m.role === "user" ? "items-end" : "items-start",
-						)}
-					>
-						<div
-							className={cn(
-								"px-4 py-3 text-sm max-w-[85%] leading-relaxed border-2 border-zinc-900 dark:border-zinc-100 shadow-[3px_3px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_rgba(255,255,255,0.2)]",
-								m.role === "user"
-									? "bg-primary text-white"
-									: "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100",
-							)}
-						>
-							{m.content}
-						</div>
-					</div>
-				))}
-				{isLoading && (
-					<div className='max-w-[85%] px-4 py-3 border-2 border-zinc-900 dark:border-zinc-100 bg-white dark:bg-zinc-900 text-zinc-500 shadow-[3px_3px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_rgba(255,255,255,0.2)] text-sm flex gap-1 items-center'>
-						<span className='animate-bounce'>●</span>
-						<span className='animate-bounce' style={{ animationDelay: "0.2s" }}>
-							●
-						</span>
-						<span className='animate-bounce' style={{ animationDelay: "0.4s" }}>
-							●
-						</span>
-					</div>
-				)}
-				<div ref={messagesEndRef} />
-			</div>
-
-			<form
-				onSubmit={handleSubmit}
-				className='p-4 border-t-4 border-zinc-900 dark:border-zinc-100 bg-light-bg dark:bg-dark-bg flex gap-3'
-			>
-				<input
-					type='text'
-					value={input}
-					onChange={(e) => setInput(e.target.value)}
-					placeholder='Pergunte sobre Bun.js...'
-					className='flex-1 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 px-4 py-2 border-2 border-zinc-900 dark:border-zinc-100 text-sm focus:outline-none focus:border-secondary focus:ring-0 shadow-[3px_3px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_rgba(255,255,255,0.2)] transition-all font-medium'
-				/>
-				<button
-					type='submit'
-					disabled={!input.trim() || isLoading}
-					className='p-3 bg-secondary hover:bg-secondary-hover text-white border-2 border-zinc-900 dark:border-zinc-100 disabled:opacity-50 transition-colors shadow-[3px_3px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_rgba(255,255,255,0.2)] active:translate-x-1 active:translate-y-1 active:shadow-none'
-				>
-					<Send className='w-5 h-5' />
-				</button>
-			</form>
 		</div>
 	);
 }
