@@ -14,9 +14,6 @@ export function ConferenceReader() {
 		const loadContent = async () => {
 			setLoading(true);
 			try {
-				const wait = (time: number) =>
-					new Promise((resolve) => setTimeout(resolve, time));
-				await wait(5000);
 				const path = `../content/${moduloId}/${conferenciaId}.tsx`;
 				if (modules[path]) {
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,26 +33,37 @@ export function ConferenceReader() {
 
 	if (loading) {
 		return (
-			/* Agregamos w-full obligatorio y el mismo max-w-5xl del contenido real */
-			<div className='p-6 md:p-10 lg:p-14 max-w-5xl mx-auto w-full min-h-screen animate-pulse'>
-				{/* Skeleton del Título: Altura fija para que no salte */}
-				<div className='h-15 lg:h-20 bg-zinc-800/50 w-3/4 mb-8 border-b-8 border-zinc-800'></div>
-
-				{/* Skeleton de la Caja de Objetivos: Altura mínima para reservar espacio */}
-				<div className='border-4 border-zinc-800 p-6 lg:p-8 mb-12 h-64 w-full bg-zinc-900/30'>
-					<div className='h-6 bg-zinc-800 w-48 mb-6'></div>
-					<div className='space-y-4'>
-						<div className='h-4 bg-zinc-800 w-full'></div>
-						<div className='h-4 bg-zinc-800 w-11/12'></div>
-						<div className='h-4 bg-zinc-800 w-10/12'></div>
+			/* Envolvemos en un div w-full para que el Outlet ocupe todo el ancho.
+         Usamos exactamente las mismas clases de padding y margen que el return final.
+      */
+			<div className='w-full min-h-screen'>
+				<div className='p-6 md:p-10 lg:p-14 max-w-5xl mx-auto animate-pulse'>
+					{/* Skeleton del Título: Igualamos el border y padding del h1 real */}
+					<div className='inline-block border-b-8 border-zinc-800 pb-6 mb-8 w-full max-w-2xl'>
+						<div className='h-12 lg:h-16 bg-zinc-800/50 w-full'></div>
 					</div>
-				</div>
 
-				{/* Skeleton del Cuerpo de texto */}
-				<div className='space-y-6'>
-					<div className='h-4 bg-zinc-800 w-full'></div>
-					<div className='h-4 bg-zinc-800 w-full'></div>
-					<div className='h-4 bg-zinc-800 w-3/4'></div>
+					{/* Skeleton de Objetivos:
+              Forzamos w-full para que no se colapse horizontalmente
+          */}
+					<div className='bg-zinc-900/30 border-4 border-zinc-800 p-6 lg:p-8 mb-12 shadow-[6px_6px_0px_rgba(30,30,30,1)] w-full'>
+						<div className='flex items-center gap-3 mb-6'>
+							<div className='w-12 h-8 bg-zinc-800'></div>
+							<div className='h-6 bg-zinc-800 w-48'></div>
+						</div>
+						<div className='space-y-4'>
+							<div className='h-4 bg-zinc-800 w-full'></div>
+							<div className='h-4 bg-zinc-800 w-11/12'></div>
+						</div>
+					</div>
+
+					{/* Skeleton del Texto del contenido */}
+					<div className='space-y-6 w-full'>
+						<div className='h-4 bg-zinc-800/50 w-full'></div>
+						<div className='h-4 bg-zinc-800/50 w-full'></div>
+						<div className='h-4 bg-zinc-800/50 w-4/5'></div>
+						<div className='h-4 bg-zinc-800/50 w-full'></div>
+					</div>
 				</div>
 			</div>
 		);

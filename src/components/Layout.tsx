@@ -16,7 +16,7 @@ export function Layout() {
 				<Header onMenuClick={() => setIsSidebarOpen(true)} />
 
 				<main className='flex-1 overflow-y-auto w-full relative'>
-					<div className='min-h-full pb-24'>
+					<div className='min-h-full pb-24 w-full'>
 						<Outlet />
 					</div>
 
