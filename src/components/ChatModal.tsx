@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageSquare, X, Send, Bot } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { cn } from "../lib/utils";
 import { COURSE_NAME } from "../content/constants";
 
@@ -9,6 +10,7 @@ interface Message {
 }
 
 export function ChatModal() {
+	const location = useLocation();
 	const [isOpen, setIsOpen] = useState(false);
 	const [messages, setMessages] = useState<Message[]>([
 		{
@@ -93,6 +95,11 @@ export function ChatModal() {
 			setIsLoading(false);
 		}
 	};
+
+	// Solo mostrar si estamos en la sección de conferencias
+	if (!location.pathname.startsWith("/conferencias")) {
+		return null;
+	}
 
 	if (!isOpen) {
 		return (
