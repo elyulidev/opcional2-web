@@ -1,16 +1,18 @@
 import { Link, useLocation } from 'react-router-dom';
 import { MODULOS, NAV_LINKS } from '../content/constants';
 import { ChevronDown, ChevronRight, BookOpen, LayoutDashboard, FileText, CheckCircle } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { cn } from '../lib/utils';
 
 export function Sidebar({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
   const location = useLocation();
   const [expandedModuleId, setExpandedModuleId] = useState<string | null>(null);
   const [isConferenciasExpanded, setIsConferenciasExpanded] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(location.pathname);
   
-  // Sincronizar modulo expandido con la ruta actual
-  useEffect(() => {
+  // Sincronizar modulo expandido con la ruta actual durante el render
+  if (location.pathname !== prevPathname) {
+    setPrevPathname(location.pathname);
     const isConfPath = location.pathname.startsWith('/conferencias');
     if (isConfPath) {
       setIsConferenciasExpanded(true);
@@ -21,7 +23,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
         setExpandedModuleId(activeModulo.id);
       }
     }
-  }, [location.pathname]);
+  }
 
   const toggleModule = (id: string) => {
     setExpandedModuleId(prev => prev === id ? null : id);
