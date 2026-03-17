@@ -36,34 +36,33 @@ export function ConferenceReader() {
 			/* Envolvemos en un div w-full para que el Outlet ocupe todo el ancho.
          Usamos exactamente las mismas clases de padding y margen que el return final.
       */
-			<div className='w-full min-h-screen'>
-				<div className='p-6 md:p-10 lg:p-14 max-w-5xl mx-auto animate-pulse'>
-					{/* Skeleton del Título: Igualamos el border y padding del h1 real */}
-					<div className='inline-block border-b-8 border-zinc-800 pb-6 mb-8 w-full max-w-2xl'>
-						<div className='h-12 lg:h-16 bg-zinc-800/50 w-full'></div>
-					</div>
 
-					{/* Skeleton de Objetivos:
+			<div className='p-6 md:p-10 lg:p-14 w-full'>
+				{/* Skeleton del Título: Igualamos el border y padding del h1 real */}
+				<div className='inline-block border-b-8 border-zinc-800 pb-6 mb-8 w-full max-w-2xl'>
+					<div className='h-12 lg:h-16 bg-zinc-800/50 w-full'></div>
+				</div>
+
+				{/* Skeleton de Objetivos:
               Forzamos w-full para que no se colapse horizontalmente
           */}
-					<div className='bg-zinc-900/30 border-4 border-zinc-800 p-6 lg:p-8 mb-12 shadow-[6px_6px_0px_rgba(30,30,30,1)] w-full'>
-						<div className='flex items-center gap-3 mb-6'>
-							<div className='w-12 h-8 bg-zinc-800'></div>
-							<div className='h-6 bg-zinc-800 w-48'></div>
-						</div>
-						<div className='space-y-4'>
-							<div className='h-4 bg-zinc-800 w-full'></div>
-							<div className='h-4 bg-zinc-800 w-11/12'></div>
-						</div>
+				<div className='bg-zinc-900/30 border-4 border-zinc-800 p-6 lg:p-8 mb-12 shadow-[6px_6px_0px_rgba(30,30,30,1)] w-full'>
+					<div className='flex items-center gap-3 mb-6'>
+						<div className='w-12 h-8 bg-zinc-800'></div>
+						<div className='h-6 bg-zinc-800 w-48'></div>
 					</div>
+					<div className='space-y-4'>
+						<div className='h-4 bg-zinc-800 w-full'></div>
+						<div className='h-4 bg-zinc-800 w-11/12'></div>
+					</div>
+				</div>
 
-					{/* Skeleton del Texto del contenido */}
-					<div className='space-y-6 w-full'>
-						<div className='h-4 bg-zinc-800/50 w-full'></div>
-						<div className='h-4 bg-zinc-800/50 w-full'></div>
-						<div className='h-4 bg-zinc-800/50 w-4/5'></div>
-						<div className='h-4 bg-zinc-800/50 w-full'></div>
-					</div>
+				{/* Skeleton del Texto del contenido */}
+				<div className='space-y-6 w-full'>
+					<div className='h-4 bg-zinc-800/50 w-full'></div>
+					<div className='h-4 bg-zinc-800/50 w-full'></div>
+					<div className='h-4 bg-zinc-800/50 w-4/5'></div>
+					<div className='h-4 bg-zinc-800/50 w-full'></div>
 				</div>
 			</div>
 		);
@@ -84,7 +83,7 @@ export function ConferenceReader() {
 	}
 
 	return (
-		<div className='p-6 md:p-10 lg:p-14 min-h-screen max-w-5xl mx-auto animate-in fade-in duration-500'>
+		<div className='p-6 md:p-10 lg:p-14 w-full '>
 			<h1 className='text-4xl lg:text-6xl font-serif font-black text-zinc-900 dark:text-white mb-8 leading-[1.1] uppercase tracking-tighter border-b-8 border-primary pb-6 inline-block'>
 				{data.titulo}
 			</h1>
