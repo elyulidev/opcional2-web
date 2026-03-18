@@ -3,7 +3,7 @@ import { CodeBlock } from "../../components/CodeBlock";
 import { Callout, Box } from "../../components/CourseComponents";
 
 export const data: ConferenciaData = {
-	titulo: "4.3 Timeouts, retries e testes que demoram",
+	titulo: "2.4 Testes com bun:test — primeira bateria de testes reais",
 	objetivos: [
 		"Compreender os conceitos fundamentais desta conferência.",
 		"Aplicar os conhecimentos em exercícios práticos.",

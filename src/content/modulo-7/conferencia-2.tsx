@@ -3,7 +3,7 @@ import { CodeBlock } from "../../components/CodeBlock";
 import { Callout, Box } from "../../components/CourseComponents";
 
 export const data: ConferenciaData = {
-	titulo: "4.3 Timeouts, retries e testes que demoram",
+	titulo: "7.2 Testando rotas HTTP com Elysia.js e bun:test",
 	objetivos: [
 		"Compreender os conceitos fundamentais desta conferência.",
 		"Aplicar os conhecimentos em exercícios práticos.",
