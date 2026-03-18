@@ -115,7 +115,7 @@ export function ChatModal() {
 
 	return (
 		<div className='relative h-full w-full'>
-			<div className='absolute bottom-6 right-14 pointer-events-auto'>
+			<div className='absolute -bottom-12 right-0 lg:right-2 pointer-events-auto'>
 				<div className='w-85 md:w-100 h-137.5 md:h-150 max-h-[85vh] border-4 border-zinc-900 dark:border-zinc-100 shadow-[8px_8px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_rgba(255,255,255,0.2)] bg-light-bg dark:bg-dark-bg flex flex-col z-50 overflow-hidden animate-in slide-in-from-bottom-5'>
 					<div className='flex items-center justify-between p-4 border-b-4 border-zinc-900 dark:border-zinc-100 bg-secondary dark:bg-secondary text-white'>
 						<div className='flex items-center gap-3'>
