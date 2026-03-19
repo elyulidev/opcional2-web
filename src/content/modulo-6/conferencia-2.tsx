@@ -1,6 +1,5 @@
 import type { ConferenciaData } from "../../types";
-import { CodeBlock } from "../../components/CodeBlock";
-import { Callout, Box } from "../../components/CourseComponents";
+import { Box } from "../../components/CourseComponents";
 
 export const data: ConferenciaData = {
 	titulo: "6.2 O ciclo Red-Green-Refactor na prática",

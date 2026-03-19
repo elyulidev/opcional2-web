@@ -1,6 +1,5 @@
 import type { ConferenciaData } from "../../types";
-import { CodeBlock } from "../../components/CodeBlock";
-import { Callout, Box } from "../../components/CourseComponents";
+import { Box } from "../../components/CourseComponents";
 
 export const data: ConferenciaData = {
 	titulo: "4.3 Timeouts, retries e testes que demoram",

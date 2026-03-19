@@ -1,6 +1,5 @@
 import type { ConferenciaData } from "../../types";
-import { CodeBlock } from "../../components/CodeBlock";
-import { Callout, Box } from "../../components/CourseComponents";
+import { Box } from "../../components/CourseComponents";
 
 export const data: ConferenciaData = {
 	titulo: "2.5 Matchers: como verificar resultados de forma precisa",

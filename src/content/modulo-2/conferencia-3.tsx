@@ -1,6 +1,5 @@
 import type { ConferenciaData } from "../../types";
-import { CodeBlock } from "../../components/CodeBlock";
-import { Callout, Box } from "../../components/CourseComponents";
+import { Box } from "../../components/CourseComponents";
 
 export const data: ConferenciaData = {
 	titulo: "2.3 Tipos de testes: unitários, de integração e end-to-end",
