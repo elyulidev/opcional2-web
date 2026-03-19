@@ -28,17 +28,21 @@ export const data: ConferenciaData = {
 						Na conferência anterior, entendemos por que testar é fundamental.
 						Agora vamos preparar o nosso ambiente de trabalho.
 					</p>
-					<p>
-						Pense assim: um cozinheiro profissional, antes de preparar qualquer
-						prato, organiza a cozinha. Coloca as facas no lugar certo, verifica
-						se o fogão funciona, separa os ingredientes. Se a cozinha estiver
-						desorganizada, mesmo o melhor cozinheiro vai produzir um prato ruim.
-					</p>
-					<p>
-						O mesmo vale para programação. Um ambiente bem configurado elimina
-						obstáculos desnecessários e permite que você se concentre no que
-						importa: escrever código e testes de qualidade.
-					</p>
+					<Box className='p-0 overflow-hidden border-4 border-black dark:border-white shadow-brutalist my-8 group'>
+						<img
+							src='/images/chef-kitchen-organization.png'
+							alt='Cozinheiro profissional organizando a cozinha (Mise en place)'
+							className='w-full object-cover h-112.5 grayscale group-hover:grayscale-0 transition-all duration-700 block'
+						/>
+						<div className='p-4 bg-black text-white dark:bg-white dark:text-black font-black uppercase text-xs tracking-[0.2em] text-center border-t-4 border-black dark:border-white'>
+							Mise en place: A cozinha organizada do programador
+						</div>
+					</Box>
+					<Callout type='info' title='O mesmo vale para programação'>
+						Um ambiente bem configurado elimina obstáculos desnecessários e
+						permite que você se concentre no que importa: escrever código e
+						testes de qualidade.
+					</Callout>
 				</div>
 				<div className='mt-8 pt-6 border-t-4 border-black/10 dark:border-white/10'>
 					<p className='font-black mb-4 uppercase text-sm tracking-widest text-primary'>
@@ -87,17 +91,17 @@ export const data: ConferenciaData = {
 					{[
 						{
 							title: "Runtime",
-							desc: "Significa que o Bun executa código JavaScript e TypeScript diretamente. Assim como o Node.js, mas muito mais rápido. Quando você digita bun arquivo.ts, o Bun lê o TypeScript, compila internamente e executa — tudo em milissegundos, sem configuração.",
+							desc: "Significa que o Bun executa código JavaScript e TypeScript diretamente. Assim como o Node.js, mas muito mais rápido. Quando você digita bun arquivo.ts, o Bun lê o TypeScript, compila internamente e executa tudo em milissegundos, sem configuração.",
 							color: "border-blue-500",
 						},
 						{
 							title: "Bundler",
-							desc: "Significa que o Bun consegue pegar vários arquivos do seu projeto e juntá-los num único arquivo otimizado para produção, como o Webpack ou Vite fazem — mas integrado, sem instalar nada extra.",
+							desc: "Significa que o Bun consegue pegar vários arquivos do seu projeto e juntá-los num único arquivo otimizado para produção, como o Webpack ou Vite fazem mas integrado, sem instalar nada extra.",
 							color: "border-purple-500",
 						},
 						{
 							title: "Gestor de pacotes",
-							desc: "Significa que o Bun substitui o npm e o yarn. Em vez de npm install, usamos bun install. É drasticamente mais rápido — instala dependências de um projeto Node.js típico em 2 a 3 segundos, comparado com 30 a 60 segundos do npm.",
+							desc: "Significa que o Bun substitui o npm e o yarn. Em vez de npm install, usamos bun install. É drasticamente mais rápido instala dependências de um projeto Node.js típico em 2 a 3 segundos, comparado com 30 a 60 segundos do npm.",
 							color: "border-green-500",
 						},
 						{
@@ -233,7 +237,7 @@ export const data: ConferenciaData = {
 						</p>
 						<CodeBlock
 							language='bash'
-							code={`bun --version      # versão do runtime\nbun pm --version   # versão do gestor de pacotes (mesmo binário)`}
+							code={`bun --version      # versão do runtime\nbun pm version   # versão do gestor de pacotes (mesmo binário)`}
 						/>
 						<div className='mt-6 p-4 bg-zinc-100 dark:bg-zinc-800 border-2 border-black dark:border-white font-mono text-sm inline-block'>
 							<p>Resultado esperado:</p>
@@ -448,9 +452,10 @@ export const data: ConferenciaData = {
 								<span className='text-primary'>📂</span> src/
 							</p>
 							{[
-								["modulo-01", "fundamentos do testing"],
-								["modulo-02", "mocking"],
-								["modulo-03", "testes assíncronos"],
+								["modulo-01", "preparação e boas vindas"],
+								["modulo-02", "fundamentos do testing"],
+								["modulo-03", "mocking"],
+								["modulo-04", "testes assíncronos"],
 							].map(([folder, info]) => (
 								<p key={folder} className='flex items-center gap-2 pl-12'>
 									<span className='text-zinc-400'>├──</span>{" "}
@@ -568,7 +573,7 @@ export const data: ConferenciaData = {
 						</p>
 						<CodeBlock
 							language='typescript'
-							code={`// src/modulo-01/calculadora.ts\n\n// Uma calculadora simples — nosso primeiro cobaia para testes\n\nexport function somar(a: number, b: number): number {\n  return a + b;\n}\n\nexport function subtrair(a: number, b: number): number {\n  return a - b;\n}\n\nexport function multiplicar(a: number, b: number): number {\n  return a * b;\n}\n\nexport function dividir(a: number, b: number): number {\n  // Atenção: divisão por zero é um problema real!\n  if (b === 0) {\n    throw new Error("Não é possível dividir por zero");\n  }\n  return a / b;\n}`}
+							code={`// src/modulo-02/calculadora.ts\n\n// Uma calculadora simples — nosso primeiro cobaia para testes\n\nexport function somar(a: number, b: number): number {\n  return a + b;\n}\n\nexport function subtrair(a: number, b: number): number {\n  return a - b;\n}\n\nexport function multiplicar(a: number, b: number): number {\n  return a * b;\n}\n\nexport function dividir(a: number, b: number): number {\n  // Atenção: divisão por zero é um problema real!\n  if (b === 0) {\n    throw new Error("Não é possível dividir por zero");\n  }\n  return a / b;\n}`}
 						/>
 					</div>
 					<div className='space-y-6'>
@@ -578,7 +583,7 @@ export const data: ConferenciaData = {
 						<p className='text-sm italic'>Agora, crie o arquivo de teste:</p>
 						<CodeBlock
 							language='typescript'
-							code={`// src/modulo-01/calculadora.test.ts\n\n// Importamos as ferramentas de teste do Bun\nimport { expect, test, describe } from "bun:test";\n\n// Importamos as funções que queremos testar\nimport { somar, subtrair, multiplicar, dividir } from "./calculadora";\n\n// 'describe' cria um grupo de testes relacionados\ndescribe("Calculadora", () => {\n\n  describe("somar", () => {\n    test("soma dois números positivos", () => {\n      const a = 5; const b = 3;\n      const resultado = somar(a, b);\n      expect(resultado).toBe(8);\n    });\n  });\n\n  describe("dividir", () => {\n    test("resultado pode ser decimal", () => {\n      expect(dividir(10, 3)).toBeCloseTo(3.333, 2);\n    });\n\n    test("lança erro ao dividir por zero", () => {\n      expect(() => dividir(10, 0)).toThrow("Não é possível dividir por zero");\n    });\n  });\n\n});`}
+							code={`// src/modulo-02/calculadora.test.ts\n\n// Importamos as ferramentas de teste do Bun\nimport { expect, test, describe } from "bun:test";\n\n// Importamos as funções que queremos testar\nimport { somar, subtrair, multiplicar, dividir } from "./calculadora";\n\n// 'describe' cria um grupo de testes relacionados\ndescribe("Calculadora", () => {\n\n  describe("somar", () => {\n    test("soma dois números positivos", () => {\n      const a = 5; const b = 3;\n      const resultado = somar(a, b);\n      expect(resultado).toBe(8);\n    });\n  });\n\n  describe("dividir", () => {\n    test("resultado pode ser decimal", () => {\n      expect(dividir(10, 3)).toBeCloseTo(3.333, 2);\n    });\n\n    test("lança erro ao dividir por zero", () => {\n      expect(() => dividir(10, 0)).toThrow("Não é possível dividir por zero");\n    });\n  });\n\n});`}
 						/>
 					</div>
 				</div>
@@ -617,7 +622,7 @@ export const data: ConferenciaData = {
 							</p>
 							<br />
 							<p className='font-bold underline text-white'>
-								11 pass, 0 fail (Exemplo demonstrativo)
+								3 pass, 0 fail (Exemplo demonstrativo)
 							</p>
 						</div>
 					</Box>
@@ -653,10 +658,6 @@ export const data: ConferenciaData = {
 							desc: "Executa em modo watch (re-executa quando o arquivo muda). Muito útil durante o desenvolvimento!",
 						},
 						{ cmd: "bun test --coverage", desc: "Ver cobertura de código" },
-						{
-							cmd: "bun test --reporter verbose",
-							desc: "Executar com mais detalhes (verbose)",
-						},
 					].map((item) => (
 						<Box
 							key={item.cmd}
@@ -751,14 +752,13 @@ export const data: ConferenciaData = {
 				</p>
 				<CodeBlock
 					language='json'
-					code={`"scripts": {\n  "test": "bun test",\n  "test:watch": "bun test --watch",\n  "test:coverage": "bun test --coverage",\n  "test:verbose": "bun test --reporter verbose"\n}`}
+					code={`"scripts": {\n  "test": "bun test",\n  "test:watch": "bun test --watch",\n  "test:coverage": "bun test --coverage"}`}
 				/>
 				<div className='mt-8 grid grid-cols-2 md:grid-cols-4 gap-4'>
 					{[
 						["bun run test", "todos os testes"],
 						["bun run test:watch", "modo watch"],
 						["bun run test:coverage", "relatório de cobertura"],
-						["bun run test:verbose", "detalhes completos"],
 					].map(([cmd, label]) => (
 						<div
 							key={cmd}

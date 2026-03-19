@@ -347,8 +347,8 @@ describe("calcularPrecoFinal", () => {
 				</h3>
 				<div className='space-y-6 relative z-10'>
 					<p>
-						Pensa numa aplicação que usas no dia a dia (ex: App do Banco, MB
-						Way, NetGiro).
+						Pensa numa aplicação que usas no dia a dia (ex: App do Banco, rede
+						social, etc).
 					</p>
 					<ul className='list-disc pl-6 space-y-3 font-bold'>
 						<li>Quais são as funções mais críticas dessa app?</li>
