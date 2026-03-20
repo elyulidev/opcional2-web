@@ -1,6 +1,7 @@
 import type { ConferenciaData } from "../../types";
 import { CodeBlock } from "../../components/CodeBlock";
 import { Callout, Box } from "../../components/CourseComponents";
+import { GitFork } from "lucide-react";
 
 export const data: ConferenciaData = {
 	titulo: "1.2 Instalação e configuração do ambiente com Bun",
@@ -478,6 +479,16 @@ export const data: ConferenciaData = {
 								<span className='text-zinc-400'>└──</span> README.md
 							</p>
 						</div>
+						<div className='flex justify-center items-center gap-2 bg-primary hover:bg-primary/80 cursor-pointer transition-colors text-white px-2 py-1 rounded-md w-fit mx-auto mt-4'>
+							<GitFork />
+							<a
+								href='https://github.com/elyulidev/monorepo-opcional2'
+								target='_blank'
+								rel='noopener noreferrer'
+							>
+								Onde encontrar o código
+							</a>
+						</div>
 					</Box>
 				</div>
 			</section>
@@ -507,7 +518,7 @@ export const data: ConferenciaData = {
     "moduleResolution": "bundler",
     "strict": true,
     "skipLibCheck": true,
-    "types": ["bun-types"]
+    "types": ["bun"]
   },
   "include": ["src/**/*.ts", "*.ts"],
   "exclude": ["node_modules"]
@@ -524,7 +535,7 @@ export const data: ConferenciaData = {
 								desc: "Ativa todas as verificações rigorosas do TypeScript. Isso significa que o TypeScript vai reclamar quando você tentar fazer coisas perigosas, como usar uma variável que pode ser null sem verificar antes. É como ter um co-piloto exigente — irrita um pouco no início, mas salva você de muitos acidentes.",
 							},
 							{
-								label: '"types": ["bun-types"]',
+								label: '"types": ["bun"]',
 								desc: "Diz ao TypeScript que queremos os tipos do Bun disponíveis globalmente. Sem isso, o TypeScript não reconheceria funções como Bun.file() ou o bun:test.",
 							},
 							{
