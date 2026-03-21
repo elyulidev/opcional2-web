@@ -119,7 +119,7 @@ export const data: ConferenciaData = {
 				<p className='text-lg mb-6'>Agora veja o mesmo padrão em código:</p>
 				<CodeBlock
 					language='typescript'
-					code={`// src/modulo-01/anatomia.test.ts\n\nimport { expect, test } from "bun:test";\n\n// Uma função simples que vamos testar\nfunction calcularIdade(anoNascimento: number, anoAtual: number): number {\n  return anoAtual - anoNascimento;\n}\n\ntest("calcula corretamente a idade de uma pessoa", () => {\n\n  // ---- ARRANGE (Preparar) ----\n  // Preparamos os dados que o teste vai usar\n  const anoNascimento = 1995;\n  const anoAtual = 2025;\n  const idadeEsperada = 30;\n\n  // ---- ACT (Agir) ----\n  // Executamos a função que queremos testar\n  const idadeCalculada = calcularIdade(anoNascimento, anoAtual);\n\n  // ---- ASSERT (Verificar) ----\n  // Verificamos se o resultado é o que esperávamos\n  expect(idadeCalculada).toBe(idadeEsperada);\n\n});`}
+					code={`// src/modulo-02/anatomia.test.ts\n\nimport { expect, test } from "bun:test";\n\n// Uma função simples que vamos testar\nfunction calcularIdade(anoNascimento: number, anoAtual: number): number {\n  return anoAtual - anoNascimento;\n}\n\ntest("calcula corretamente a idade de uma pessoa", () => {\n\n  // ---- ARRANGE (Preparar) ----\n  // Preparamos os dados que o teste vai usar\n  const anoNascimento = 1995;\n  const anoAtual = 2025;\n  const idadeEsperada = 30;\n\n  // ---- ACT (Agir) ----\n  // Executamos a função que queremos testar\n  const idadeCalculada = calcularIdade(anoNascimento, anoAtual);\n\n  // ---- ASSERT (Verificar) ----\n  // Verificamos se o resultado é o que esperávamos\n  expect(idadeCalculada).toBe(idadeEsperada);\n\n});`}
 				/>
 
 				<div className='mt-12'>
@@ -268,7 +268,7 @@ export const data: ConferenciaData = {
 						</p>
 						<CodeBlock
 							language='typescript'
-							code={`// src/modulo-01/matchers.test.ts\nimport { expect, test, describe } from "bun:test";\n\ndescribe("toBe — igualdade exata", () => {\n  test("números iguais passam", () => {\n    expect(2 + 2).toBe(4);\n  });\n\n  test("strings iguais passam", () => {\n    expect("olá" + " mundo").toBe("olá mundo");\n  });\n\n  test("booleanos", () => {\n    expect(true).toBe(true);\n    expect(false).toBe(false);\n  });\n});`}
+							code={`// src/modulo-02/matchers.test.ts\nimport { expect, test, describe } from "bun:test";\n\ndescribe("toBe — igualdade exata", () => {\n  test("números iguais passam", () => {\n    expect(2 + 2).toBe(4);\n  });\n\n  test("strings iguais passam", () => {\n    expect("olá" + " mundo").toBe("olá mundo");\n  });\n\n  test("booleanos", () => {\n    expect(true).toBe(true);\n    expect(false).toBe(false);\n  });\n});`}
 						/>
 						<Callout type='warning' title='ARMADILHA FATAL' className='mt-8'>
 							<p className='font-bold text-xl mb-4'>
@@ -337,14 +337,14 @@ export const data: ConferenciaData = {
 					</div>
 
 					<Box className='bg-black text-white dark:bg-white dark:text-black py-12 text-center'>
-						<h3 className='text-4xl font-black uppercase mb-4 italic tracking-widest'>
+						<h3 className='text-4xl font-black uppercase mb-4 italic tracking-widest text-primary'>
 							O modificador .not
 						</h3>
-						<p className='text-xl font-medium tracking-tight uppercase'>
+						<p className='text-xl font-medium tracking-tight uppercase text-zinc-300 dark:text-zinc-700'>
 							Qualquer matcher pode ser negado com <strong>.not</strong>. É como
 							colocar "não" antes da afirmação.
 						</p>
-						<div className='mt-8 text-2xl font-mono'>
+						<div className='mt-8 text-2xl font-mono text-zinc-300 dark:text-zinc-700'>
 							expect(resultado)<span className='text-primary'>.not</span>
 							.toBe(0);
 						</div>
@@ -495,7 +495,7 @@ export const data: ConferenciaData = {
 						</h3>
 						<CodeBlock
 							language='typescript'
-							code={`// src/modulo-01/gestao-notas.ts\n\nexport interface Aluno {\n  nome: string;\n  notas: number[];\n}\n\nexport function calcularMedia(notas: number[]): number {\n  if (notas.length === 0) return 0;\n  const soma = notas.reduce((acc, nota) => acc + nota, 0);\n  return soma / notas.length;\n}\n\nexport function determinarSituacao(media: number): string {\n  if (media < 0 || media > 20) throw new Error("Média inválida");\n  if (media >= 9.5) return "Aprovado";\n  return "Reprovado";\n}`}
+							code={`// src/modulo-02/gestao-notas.ts\n\nexport interface Aluno {\n  nome: string;\n  notas: number[];\n}\n\nexport function calcularMedia(notas: number[]): number {\n  if (notas.length === 0) return 0;\n  const soma = notas.reduce((acc, nota) => acc + nota, 0);\n  return soma / notas.length;\n}\n\nexport function determinarSituacao(media: number): string {\n  if (media < 0 || media > 20) throw new Error("Média inválida");\n  if (media >= 9.5) return "Aprovado";\n  return "Reprovado";\n}`}
 						/>
 					</div>
 					<div className='space-y-6'>
@@ -504,7 +504,7 @@ export const data: ConferenciaData = {
 						</h3>
 						<CodeBlock
 							language='typescript'
-							code={`// src/modulo-01/gestao-notas.test.ts\nimport { expect, test, describe } from "bun:test";\nimport { calcularMedia, determinarSituacao } from "./gestao-notas";\n\ndescribe("Gestão de Notas", () => {\n  test("calcula a média corretamente", () => {\n    expect(calcularMedia([10, 12, 14])).toBe(12);\n  });\n\n  test("determina situação de aprovação", () => {\n    expect(determinarSituacao(15)).toBe("Aprovado");\n    expect(determinarSituacao(9.5)).toBe("Aprovado");\n  });\n\n  test("determina situação de reprovação", () => {\n    expect(determinarSituacao(7)).toBe("Reprovado");\n  });\n\n  test("erro para médias impossíveis", () => {\n    expect(() => determinarSituacao(25)).toThrow("Média inválida");\n  });\n});`}
+							code={`// src/modulo-02/gestao-notas.test.ts\nimport { expect, test, describe } from "bun:test";\nimport { calcularMedia, determinarSituacao } from "./gestao-notas";\n\ndescribe("Gestão de Notas", () => {\n  test("calcula a média corretamente", () => {\n    expect(calcularMedia([10, 12, 14])).toBe(12);\n  });\n\n  test("determina situação de aprovação", () => {\n    expect(determinarSituacao(15)).toBe("Aprovado");\n    expect(determinarSituacao(9.5)).toBe("Aprovado");\n  });\n\n  test("determina situação de reprovação", () => {\n    expect(determinarSituacao(7)).toBe("Reprovado");\n  });\n\n  test("erro para médias impossíveis", () => {\n    expect(() => determinarSituacao(25)).toThrow("Média inválida");\n  });\n});`}
 						/>
 					</div>
 				</div>
@@ -543,7 +543,7 @@ export const data: ConferenciaData = {
 				</h3>
 				<div className='space-y-8 text-xl font-medium leading-relaxed text-zinc-800 dark:text-zinc-200'>
 					<p>
-						Crie o arquivo <code>src/modulo-01/string-utils.ts</code> com estas
+						Crie o arquivo <code>src/modulo-02/string-utils.ts</code> com estas
 						funções:
 					</p>
 					<ul className='space-y-4'>
