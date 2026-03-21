@@ -152,22 +152,22 @@ export const data: ConferenciaData = {
 						</p>
 
 						<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-							<Box className='border-red-500 bg-red-50/50 dark:bg-red-950/10'>
+							<Box className='border-red-500 bg-red-50/50 dark:bg-red-950/10 overflow-x-auto'>
 								<p className='font-bold text-red-500 mb-2 uppercase'>
 									❌ Assert obscuro
 								</p>
-								<div className='p-4 bg-zinc-900 text-white font-mono rounded'>
+								<p className='p-4 bg-zinc-900 text-white font-mono rounded w-fit'>
 									expect(resultado).toBe(2592000000);
-								</div>
+								</p>
 								<p className='mt-2 text-sm italic opacity-70'>
 									O que significa este número?
 								</p>
 							</Box>
-							<Box className='border-green-500 bg-green-50/50 dark:bg-green-950/10'>
+							<Box className='border-green-500 bg-green-50/50 dark:bg-green-950/10 overflow-x-auto'>
 								<p className='font-bold text-green-500 mb-2 uppercase'>
 									✅ Assert claro
 								</p>
-								<div className='p-4 bg-zinc-900 text-white font-mono rounded'>
+								<div className='p-4 bg-zinc-900 text-white font-mono rounded w-fit'>
 									const TRINTA_DIAS_EM_MS = 30 * 24 * 60 * 60 * 1000;
 									<br />
 									expect(resultado).toBe(TRINTA_DIAS_EM_MS);
@@ -204,7 +204,7 @@ export const data: ConferenciaData = {
 						</h3>
 						<CodeBlock
 							language='typescript'
-							code={`// src/modulo-01/carrinho.ts\n\nexport interface Produto {\n  nome: string;\n  preco: number;\n  quantidade: number;\n}\n\nexport interface Carrinho {\n  produtos: Produto[];\n}\n\nexport function adicionarProduto(carrinho: Carrinho, produto: Produto): Carrinho {\n  const existe = carrinho.produtos.find(p => p.nome === produto.nome);\n  if (existe) {\n    return {\n      produtos: carrinho.produtos.map(p =>\n        p.nome === produto.nome\n          ? { ...p, quantidade: p.quantidade + produto.quantidade }\n          : p\n      )\n    };\n  }\n  return { produtos: [...carrinho.produtos, produto] };\n}\n\nexport function removerProduto(carrinho: Carrinho, nomeProduto: string): Carrinho {\n  return { produtos: carrinho.produtos.filter(p => p.nome !== nomeProduto) };\n}\n\nexport function calcularTotal(carrinho: Carrinho): number {\n  return carrinho.produtos.reduce((total, p) => total + (p.preco * p.quantidade), 0);\n}\n\nexport function contarItens(carrinho: Carrinho): number {\n  return carrinho.produtos.reduce((total, p) => total + p.quantidade, 0);\n}`}
+							code={`// src/modulo-02/carrinho.ts\n\nexport interface Produto {\n  nome: string;\n  preco: number;\n  quantidade: number;\n}\n\nexport interface Carrinho {\n  produtos: Produto[];\n}\n\nexport function adicionarProduto(carrinho: Carrinho, produto: Produto): Carrinho {\n  const existe = carrinho.produtos.find(p => p.nome === produto.nome);\n  if (existe) {\n    return {\n      produtos: carrinho.produtos.map(p =>\n        p.nome === produto.nome\n          ? { ...p, quantidade: p.quantidade + produto.quantidade }\n          : p\n      )\n    };\n  }\n  return { produtos: [...carrinho.produtos, produto] };\n}\n\nexport function removerProduto(carrinho: Carrinho, nomeProduto: string): Carrinho {\n  return { produtos: carrinho.produtos.filter(p => p.nome !== nomeProduto) };\n}\n\nexport function calcularTotal(carrinho: Carrinho): number {\n  return carrinho.produtos.reduce((total, p) => total + (p.preco * p.quantidade), 0);\n}\n\nexport function contarItens(carrinho: Carrinho): number {\n  return carrinho.produtos.reduce((total, p) => total + p.quantidade, 0);\n}`}
 						/>
 					</div>
 					<div className='space-y-6'>
@@ -498,7 +498,7 @@ export const data: ConferenciaData = {
 					</p>
 					<CodeBlock
 						language='typescript'
-						code={`export class ContaBancaria {\n  private saldo: number;\n  readonly titular: string;\n\n  constructor(titular: string, saldoInicial: number) { ... }\n\n  depositar(valor: number): void { ... }      // lança erro se valor <= 0\n  levantar(valor: number): void { ... }       // lança erro se saldo insuficiente\n                                              // lança erro se valor <= 0\n  getSaldo(): number { ... }\n  getTitular(): string { ... }\n}`}
+						code={`export class ContaBancaria {\n  private saldo: number;\n  readonly titular: string;\n\n  constructor(titular: string, saldoInicial: number) { ... }\n\n  depositar(valor: number): void { ... }      // lança erro se valor <= 0\n  levantar(valor: number): void { ... }       // lança erro se saldo insuficiente\n                                              // lança erro se valor < 0\n  getSaldo(): number { ... }\n  getTitular(): string { ... }\n}`}
 					/>
 					<p className='font-black text-2xl border-l-8 border-primary pl-6 py-4 bg-white dark:bg-black uppercase italic'>
 						Implemente a classe e crie src/modulo-02/banco.test.ts usando:
