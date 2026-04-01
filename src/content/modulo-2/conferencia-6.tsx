@@ -345,7 +345,7 @@ export const data: ConferenciaData = {
 				</h3>
 				<div className='space-y-8 text-xl font-medium leading-relaxed text-zinc-800 dark:text-zinc-200'>
 					<p>
-						Crie o ficheiro <code>src/modulo-01/sistema-hotel.test.ts</code> e
+						Crie o ficheiro <code>src/modulo-02/sistema-hotel.test.ts</code> e
 						teste um sistema de reservas de hotel:
 					</p>
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>

@@ -75,7 +75,39 @@ export const data: ConferenciaData = {
 
 				<CodeBlock
 					language='typescript'
-					code={`// src/modulo-01/gestao-estudantes.ts\n\nexport interface Disciplina {\n  nome: string;\n  notaFrequencia: number;  // 0 a 20\n  notaExame: number;       // 0 a 20\n  presenca: number;        // 0 a 100 (percentagem)\n}\n\n// A nota final é calculada como: frequência × 40% + exame × 60%\n// O estudante está aprovado se a nota final for ≥ 9.5 e a presença for ≥ 75%\n\nexport function calcularNotaFinal(notaFrequencia: number, notaExame: number): number {\n  if (notaFrequencia < 0 || notaFrequencia > 20) throw new Error("Frequência inválida");\n  if (notaExame < 0 || notaExame > 20) throw new Error("Exame inválido");\n\n  const resultado = notaFrequencia * 0.4 + notaExame * 0.6;\n  return Math.round(resultado * 10) / 10;\n}\n\nexport function determinarSituacaoDisciplina(notaFinal: number, presenca: number): string {\n  if (presenca < 75) return "Reprovado por Falta";\n  return notaFinal >= 9.5 ? "Aprovado" : "Reprovado";\n}`}
+					code={`// src/modulo-02/gestao-estudantes.ts
+
+export interface Disciplina {
+	nome: string;
+	notaFrequencia: number; // 0 a 20
+	notaExame: number; // 0 a 20
+	presenca: number; // 0 a 100 (percentagem)
+}
+
+// A nota final é calculada como: frequência × 40% + exame × 60%
+// O estudante está aprovado se a nota final for ≥ 9.5 e a presença for ≥ 75%
+
+export function calcularNotaFinal(
+	notaFrequencia: number,
+	notaExame: number,
+): number {
+	if (notaFrequencia < 0 || notaFrequencia > 20)
+		throw new Error("Frequência inválida");
+
+	if (notaExame < 0 || notaExame > 20) throw new Error("Exame inválido");
+
+	const resultado = (notaFrequencia * 0.4) + (notaExame * 0.6);
+	return Math.round(resultado * 10) / 10;
+}
+
+export function determinarSituacaoDisciplina(
+	notaFinal: number,
+	presenca: number,
+): string {
+	if (presenca < 75) return "Reprovado por Falta";
+	return notaFinal >= 9.5 ? "Aprovado" : "Reprovado";
+}
+`}
 				/>
 			</section>
 
@@ -159,7 +191,33 @@ export const data: ConferenciaData = {
 
 				<CodeBlock
 					language='typescript'
-					code={`// src/modulo-01/gestao-estudantes.test.ts\nimport { expect, test, describe, beforeEach } from "bun:test";\nimport { calcularNotaFinal, determinarSituacaoDisciplina, gerarBoletim } from "./gestao-estudantes";\n\n// --- DADOS DE APOIO ---\nconst estudanteAprovado = { matricula: "2021001", nome: "Ana", disciplinas: [...] };\n\ndescribe("calcularNotaFinal", () => {\n  test("aplica a fórmula 40/60 corretamente", () => {\n    expect(calcularNotaFinal(10, 10)).toBe(10);\n  });\n\n  test("lança erro para entradas negativas", () => {\n    expect(() => calcularNotaFinal(-1, 10)).toThrow("Nota de frequência inválida");\n  });\n});\n\ndescribe("determinarSituacaoDisciplina", () => {\n  test("reprova por falta mesmo com nota 20", () => {\n    expect(determinarSituacaoDisciplina(20, 50)).toBe("Reprovado por Falta");\n  });\n\n  test("aprova com nota 9.5 e presença 75%", () => {\n    expect(determinarSituacaoDisciplina(9.5, 75)).toBe("Aprovado");\n  });\n});`}
+					code={`// src/modulo-02/gestao-estudantes.test.ts
+import { describe, expect, test } from "bun:test";
+import {
+	calcularNotaFinal,
+	determinarSituacaoDisciplina,
+} from "./conf4-gestao-estudantes";
+
+describe("calcularNotaFinal", () => {
+	test("aplica a fórmula 40/60 corretamente", () => {
+		expect(calcularNotaFinal(10, 10)).toBe(10);
+	});
+
+	test("lança erro para entradas negativas", () => {
+		expect(() => calcularNotaFinal(-1, 10)).toThrow("Frequência inválida");
+	});
+});
+
+describe("determinarSituacaoDisciplina", () => {
+	test("reprova por falta mesmo com nota 20", () => {
+		expect(determinarSituacaoDisciplina(20, 50)).toBe("Reprovado por Falta");
+	});
+
+	test("aprova com nota 9.5 e presença 75%", () => {
+		expect(determinarSituacaoDisciplina(9.5, 75)).toBe("Aprovado");
+	});
+});
+`}
 				/>
 			</section>
 
@@ -178,7 +236,7 @@ export const data: ConferenciaData = {
 					<div className='font-mono text-sm leading-relaxed whitespace-pre'>
 						<p className='text-zinc-500 mb-4'>bun test v1.2.4</p>
 						<p className='text-zinc-300 font-bold mb-2 uppercase tracking-widest'>
-							src/modulo-01/gestao-estudantes.test.ts:
+							src/modulo-02/gestao-estudantes.test.ts:
 						</p>
 						<p className='text-white mt-4'>calcularNotaFinal</p>
 						<p className='text-zinc-400 pl-4'>cálculos corretos</p>
@@ -302,7 +360,7 @@ export const data: ConferenciaData = {
 						"Sistema Real — Aprendemos a testar regras complexas (fórmula 40/60, faltas, boletim).",
 						"Novos Matchers — toThrow, toMatchObject, toContain e toHaveLength aumentam o poder de verificação.",
 						"Organização Profissional — Suite dividida em cenários claros usando dados de suporte mockados.",
-						"Flags Úteis — --watch e --test-name-pattern tornam o desenvolvimento muito mais ágil.",
+						"Flags Úteis — --watch, --test-name-pattern tornam o desenvolvimento muito mais ágil.",
 						"Anti-patterns — Identificamos os erros de iniciantes que quebram a suite ou produzem falsos positivos.",
 					].map((line, i) => (
 						<div key={i} className='flex gap-4 items-start'>
