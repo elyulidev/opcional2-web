@@ -320,7 +320,7 @@ describe("calcularPrecoFinal", () => {
 				<div className='absolute top-0 right-0 p-4 rotate-12 opacity-10 blur-sm'>
 					<div className='text-9xl font-black'>?</div>
 				</div>
-				<h3 className='text-3xl font-black uppercase mb-6'>
+				<h3 className='text-3xl text-primary uppercase mb-6'>
 					A Mentalidade do Testador
 				</h3>
 				<p className='text-xl italic max-w-2xl'>

@@ -173,7 +173,7 @@ export const data: ConferenciaData = {
 							teste: onde começa e onde termina. O seu primeiro argumento é o
 							nome do teste, e este nome é crítico.
 						</p>
-						<Box className='bg-zinc-900 text-white p-8 border-none'>
+						<Box className='dark:bg-zinc-900 bg-zinc-100 dark:text-white text-zinc-900 p-8 border-none'>
 							<p className='text-xl mb-6 font-black uppercase italic'>
 								Um bom nome de teste responde à pergunta:{" "}
 								<span className='text-yellow-400'>
@@ -336,15 +336,15 @@ export const data: ConferenciaData = {
 						</Box>
 					</div>
 
-					<Box className='bg-black text-white dark:bg-white dark:text-black py-12 text-center'>
+					<Box className='dark:bg-black bg-zinc-100 dark:text-white text-zinc-900 py-12 text-center'>
 						<h3 className='text-4xl font-black uppercase mb-4 italic tracking-widest text-primary'>
 							O modificador .not
 						</h3>
-						<p className='text-xl font-medium tracking-tight uppercase text-zinc-300 dark:text-zinc-700'>
+						<p className='text-xl font-medium tracking-tight uppercase '>
 							Qualquer matcher pode ser negado com <strong>.not</strong>. É como
 							colocar "não" antes da afirmação.
 						</p>
-						<div className='mt-8 text-2xl font-mono text-zinc-300 dark:text-zinc-700'>
+						<div className='mt-8 text-2xl font-mono '>
 							expect(resultado)<span className='text-primary'>.not</span>
 							.toBe(0);
 						</div>

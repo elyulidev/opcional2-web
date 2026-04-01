@@ -65,13 +65,13 @@ export function Concept({
 }) {
 	return (
 		<div className='my-10 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 p-8 border-4 border-transparent shadow-[8px_8px_0px_#06b6d4] hover:translate-x-1 hover:-translate-y-1 transition-transform'>
-			<h3 className='text-3xl font-black font-serif uppercase tracking-tight mb-4 flex items-center gap-3 text-white dark:text-zinc-900'>
+			<h3 className='text-3xl font-black font-serif uppercase tracking-tight mb-4 flex items-center gap-3 text-white! dark:text-zinc-900!'>
 				<span className='bg-primary text-white px-3 py-1 border-2 border-white dark:border-zinc-900 brutalist-shadow -rotate-2'>
 					DEF
 				</span>
 				{title}
 			</h3>
-			<div className='text-xl font-medium leading-relaxed opacity-90'>
+			<div className='text-xl font-medium leading-relaxed text-white dark:text-zinc-900'>
 				{children}
 			</div>
 		</div>
@@ -92,9 +92,7 @@ export function Box({
 				className,
 			)}
 		>
-			<div className='text-lg font-bold text-zinc-800 dark:text-zinc-200'>
-				{children}
-			</div>
+			<div className='text-lg font-bold'>{children}</div>
 		</div>
 	);
 }
