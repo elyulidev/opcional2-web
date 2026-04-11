@@ -292,7 +292,34 @@ export const data: ConferenciaData = {
 					</p>
 					<CodeBlock
 						language='typescript'
-						code={`expect.extend({\n  toBeNotaAprovacao(recebido: number) {\n    const passa = recebido >= 9.5;\n    return {\n      pass: passa,\n      message: () => passa \n        ? \`Esperava que \${recebido} NÃO fosse aprovação\` \n        : \`Esperava que \${recebido} fosse aprovação (>= 9.5)\`\n    };\n  }\n});\n\n// Uso legível:\nexpect(mediaFinal).toBeNotaAprovacao();`}
+						code={`// Augmentation do módulo bun:test
+declare module "bun:test" {
+  interface Matchers<T> {
+    toBeNotaAprovacao(): T;
+  }
+}
+
+describe.todo("EXPECT.EXTEND", () => {
+  expect.extend({
+    toBeNotaAprovacao(recebido: unknown) {
+      const valor = recebido as number;
+      const passa = valor >= 9.5;
+      return {
+        pass: passa,
+        message: () =>
+          passa
+            ? \`Esperava que \${valor} NÃO fosse aprovação\`
+            : \`Esperava que \${valor} fosse aprovação (>= 9.5)\`,
+      };
+    },
+  });
+
+  test("Nota de aprovação", () => {
+    const mediaFinal = 9.7;
+    // Uso legível:
+    expect(mediaFinal).toBeNotaAprovacao();
+  });
+});`}
 					/>
 				</Box>
 			</section>

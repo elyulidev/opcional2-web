@@ -43,7 +43,7 @@ export const data: ConferenciaData = {
 					</p>
 					<p>
 						Esta é uma das perguntas mais importantes do mundo do testing. E a
-						resposta não é simples — depende do que você quer verificar, com que
+						resposta não é simples depende do que você quer verificar, com que
 						velocidade, e com que nível de confiança.
 					</p>
 					<p className='font-black text-2xl py-6 px-8 border-l-8 border-primary bg-white dark:bg-zinc-900 shadow-brutalist uppercase italic tracking-tighter'>
@@ -476,7 +476,7 @@ export const data: ConferenciaData = {
 							</ul>
 						</div>
 						<div className='p-6 bg-white dark:bg-zinc-900 border-4 border-black dark:border-white'>
-							<h4 className='font-black uppercase mb-4 text-amber-500'>
+							<h4 className='font-black uppercase mb-4 text-amber-500 overflow-x-auto'>
 								Testes (src/modulo-02/biblioteca.test.ts)
 							</h4>
 							<ul className='space-y-2 text-sm'>
