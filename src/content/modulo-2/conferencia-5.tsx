@@ -299,7 +299,7 @@ declare module "bun:test" {
   }
 }
 
-describe.todo("EXPECT.EXTEND", () => {
+describe("EXPECT.EXTEND", () => {
   expect.extend({
     toBeNotaAprovacao(recebido: unknown) {
       const valor = recebido as number;
