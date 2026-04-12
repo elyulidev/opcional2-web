@@ -162,7 +162,7 @@ export const data: ConferenciaData = {
 						<p className='text-sm mb-6'>
 							Verifica se foi chamado corretamente (argumentos, contagem).
 						</p>
-						<div className='bg-zinc-100 dark:bg-zinc-800 p-2 text-[10px] font-mono'>
+						<div className='bg-zinc-100 dark:bg-zinc-800 p-2 text-[10px] font-mono overflow-x-auto'>
 							{`expect(mock).toHaveBeenCalledWith(...)`}
 						</div>
 					</Box>
@@ -313,7 +313,7 @@ export const data: ConferenciaData = {
 				<div className='space-y-8 text-xl font-medium leading-relaxed text-zinc-800 dark:text-zinc-200'>
 					<p>
 						Crie o sistema de biblioteca em{" "}
-						<code>src/modulo-02/sistema-biblioteca.test.ts</code>:
+						<code>src/modulo-03/sistema-biblioteca.test.ts</code>:
 					</p>
 					<ul className='space-y-4 font-bold uppercase text-sm tracking-tight'>
 						<li>
