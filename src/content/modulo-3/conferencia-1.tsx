@@ -279,6 +279,355 @@ export const data: ConferenciaData = {
 				</p>
 			</section>
 
+			{/* EXERCÍCIO DE AULA */}
+			<section className='mb-32'>
+				<div className='flex items-center gap-6 mb-12'>
+					<div className='px-6 py-3 bg-amber-400 text-black font-black uppercase text-lg shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)]'>
+						🏫 EXERCÍCIO DE AULA
+					</div>
+					<div className='h-1 flex-1 bg-amber-400' />
+				</div>
+
+				{/* Cenário */}
+				<Box className='border-amber-400 bg-amber-50/10 dark:bg-amber-900/10 mb-8'>
+					<h4 className='text-2xl font-black uppercase mb-4 text-amber-600 dark:text-amber-400 flex items-center gap-3'>
+						<span>📋</span> Cenário
+					</h4>
+					<p className='text-lg leading-relaxed mb-4'>
+						Você está construindo um sistema de{" "}
+						<strong>registro de utilizadores</strong>. Quando alguém se regista,
+						o sistema deve:
+					</p>
+					<ol className='space-y-2 text-base font-medium list-decimal list-inside'>
+						<li>Verificar se o e-mail já existe na base de dados.</li>
+						<li>Se não existir, guardar o novo utilizador.</li>
+						<li>Enviar um e-mail de boas-vindas.</li>
+						<li>Retornar o utilizador criado.</li>
+					</ol>
+					<Callout type='warning' title='Regra de Ouro'>
+						O e-mail de boas-vindas <strong>NÃO deve ser enviado</strong> se o
+						e-mail já estiver em uso. Vamos testar isso SEM tocar numa base de
+						dados real nem num servidor de e-mail real.
+					</Callout>
+				</Box>
+
+				{/* Passo 1 — Código de partida */}
+				<div className='mb-8'>
+					<div className='flex items-center gap-4 mb-4'>
+						<span className='w-10 h-10 flex items-center justify-center bg-black text-white dark:bg-white dark:text-black font-black text-lg rounded-full shrink-0'>
+							1
+						</span>
+						<h4 className='text-xl font-black uppercase'>
+							Interface e Lógica de Negócio (já dada)
+						</h4>
+					</div>
+					<p className='text-sm text-zinc-500 mb-4 ml-14'>
+						Cole este código no ficheiro{" "}
+						<code className='bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5'>
+							registo.ts
+						</code>{" "}
+						— não o modifiques.
+					</p>
+					<Box className='p-0 overflow-hidden border-4 border-black dark:border-white shadow-brutalist'>
+						<CodeBlock
+							language='typescript'
+							code={`// registo.ts — Lógica de Negócio
+
+export interface IUserRepository {
+  encontrarPorEmail(email: string): Promise<{ id: number; email: string } | null>;
+  guardar(email: string, nome: string): Promise<{ id: number; email: string; nome: string }>;
+}
+
+export interface IEmailService {
+  enviarBoasVindas(email: string, nome: string): Promise<void>;
+}
+
+export interface RegistoResult {
+  sucesso: boolean;
+  mensagem: string;
+  utilizador?: { id: number; email: string; nome: string };
+}
+
+// ← Esta é a função que vamos testar
+export async function registarUtilizador(
+  email: string,
+  nome: string,
+  userRepo: IUserRepository,   // dependência injetada
+  emailService: IEmailService  // dependência injetada
+): Promise<RegistoResult> {
+  const existente = await userRepo.encontrarPorEmail(email);
+
+  if (existente) {
+    return { sucesso: false, mensagem: "E-mail já em uso." };
+  }
+
+  const novoUser = await userRepo.guardar(email, nome);
+  await emailService.enviarBoasVindas(email, nome);
+
+  return {
+    sucesso: true,
+    mensagem: "Utilizador criado com sucesso.",
+    utilizador: novoUser,
+  };
+}`}
+						/>
+					</Box>
+				</div>
+
+				{/* Passo 2 — O que os alunos devem fazer */}
+				<div className='mb-8'>
+					<div className='flex items-center gap-4 mb-4'>
+						<span className='w-10 h-10 flex items-center justify-center bg-primary text-white font-black text-lg rounded-full shrink-0'>
+							2
+						</span>
+						<h4 className='text-xl font-black uppercase'>
+							A Tua Missão — Escreve os Mocks e os Testes
+						</h4>
+					</div>
+					<p className='text-sm text-zinc-500 mb-4 ml-14'>
+						Cria o ficheiro{" "}
+						<code className='bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5'>
+							registo.test.ts
+						</code>{" "}
+						e preenche os espaços{" "}
+						<code className='bg-amber-200 dark:bg-amber-900 px-1'>
+							{"/* ??? */"}
+						</code>
+						.
+					</p>
+					<Box className='p-0 overflow-hidden border-4 border-amber-400 shadow-[6px_6px_0px_0px_rgba(251,191,36,1)]'>
+						<CodeBlock
+							language='typescript'
+							code={`// registo.test.ts — O teu trabalho começa aqui
+import { describe, test, expect } from "bun:test";
+import { registarUtilizador } from "./registo";
+import type { IUserRepository, IEmailService } from "./registo";
+
+// ─────────────────────────────────────────────
+//  CENÁRIO 1 — E-mail já em uso
+// ─────────────────────────────────────────────
+describe("registarUtilizador – e-mail duplicado", () => {
+
+  // Mock que simula um utilizador JÁ existente
+  const repoComEmailExistente: IUserRepository = {
+    encontrarPorEmail: async (email) => /* ??? */,
+    guardar: async (email, nome)       => /* ??? */,
+  };
+
+  // Mock de e-mail que regista se foi chamado
+  let emailEnviado = false;
+  const emailSpy: IEmailService = {
+    enviarBoasVindas: async (email, nome) => {
+      /* ??? — assinala a variável emailEnviado */
+    },
+  };
+
+  test("deve retornar sucesso = false", async () => {
+    const resultado = await registarUtilizador(
+      "ana@exemplo.com", "Ana",
+      repoComEmailExistente,
+      emailSpy
+    );
+    expect(resultado.sucesso).toBe(/* ??? */);
+  });
+
+  test("NÃO deve enviar e-mail de boas-vindas", async () => {
+    emailEnviado = false; // reset
+    await registarUtilizador(
+      "ana@exemplo.com", "Ana",
+      repoComEmailExistente,
+      emailSpy
+    );
+    expect(emailEnviado).toBe(/* ??? */);
+  });
+});
+
+// ─────────────────────────────────────────────
+//  CENÁRIO 2 — Registo com sucesso
+// ─────────────────────────────────────────────
+describe("registarUtilizador – sucesso", () => {
+
+  // Mock que simula e-mail LIVRE
+  const repoEmailLivre: IUserRepository = {
+    encontrarPorEmail: async () => /* ??? */,
+    guardar: async (email, nome) => /* ??? */,
+  };
+
+  let nomeNaBoasVindas = "";
+  const emailCaptor: IEmailService = {
+    enviarBoasVindas: async (email, nome) => {
+      /* ??? — guarda o nome para verificação */
+    },
+  };
+
+  test("deve retornar sucesso = true e o utilizador criado", async () => {
+    const resultado = await registarUtilizador(
+      "novo@exemplo.com", "Carlos",
+      repoEmailLivre,
+      emailCaptor
+    );
+    expect(resultado.sucesso).toBe(/* ??? */);
+    expect(resultado.utilizador?.nome).toBe("Carlos");
+  });
+
+  test("deve enviar e-mail ao nome correto", async () => {
+    nomeNaBoasVindas = ""; // reset
+    await registarUtilizador(
+      "novo@exemplo.com", "Carlos",
+      repoEmailLivre,
+      emailCaptor
+    );
+    expect(nomeNaBoasVindas).toBe(/* ??? */);
+  });
+});`}
+						/>
+					</Box>
+				</div>
+
+				{/* Passo 3 — Solução */}
+				<div className='mb-8'>
+					<div className='flex items-center gap-4 mb-4'>
+						<span className='w-10 h-10 flex items-center justify-center bg-emerald-500 text-white font-black text-lg rounded-full shrink-0'>
+							3
+						</span>
+						<h4 className='text-xl font-black uppercase text-emerald-600 dark:text-emerald-400'>
+							Solução de Referência
+						</h4>
+					</div>
+					<Callout type='info' title='Só espreites depois de tentares!'>
+						O objetivo não é copiar — é entender por que cada mock foi
+						construído dessa forma.
+					</Callout>
+					<Box className='p-0 overflow-hidden border-4 border-emerald-500 shadow-[6px_6px_0px_0px_rgba(34,197,94,1)] mt-4'>
+						<CodeBlock
+							language='typescript'
+							code={`// registo.test.ts — SOLUÇÃO COMPLETA
+import { describe, it, expect } from "bun:test";
+import { registarUtilizador } from "./registo";
+import type { IUserRepository, IEmailService } from "./registo";
+
+// ─────────────────────────────────────────────
+//  CENÁRIO 1 — E-mail já em uso
+// ─────────────────────────────────────────────
+describe("registarUtilizador – e-mail duplicado", () => {
+
+  const repoComEmailExistente: IUserRepository = {
+    // Simula: "já existe este e-mail na BD"
+    encontrarPorEmail: async (email) => ({ id: 99, email }),
+    // Nunca deve ser chamado — se for, o teste vai falhar por si
+    guardar: async (email, nome) => ({ id: 0, email, nome }),
+  };
+
+  let emailEnviado = false;
+  const emailSpy: IEmailService = {
+    enviarBoasVindas: async () => { emailEnviado = true; },
+  };
+
+  test("deve retornar sucesso = false", async () => {
+    const resultado = await registarUtilizador(
+      "ana@exemplo.com", "Ana",
+      repoComEmailExistente,
+      emailSpy
+    );
+    expect(resultado.sucesso).toBe(false);
+    expect(resultado.mensagem).toBe("E-mail já em uso.");
+  });
+
+  test("NÃO deve enviar e-mail de boas-vindas", async () => {
+    emailEnviado = false;
+    await registarUtilizador(
+      "ana@exemplo.com", "Ana",
+      repoComEmailExistente,
+      emailSpy
+    );
+    expect(emailEnviado).toBe(false); // ← a regra de negócio protege aqui
+  });
+});
+
+// ─────────────────────────────────────────────
+//  CENÁRIO 2 — Registo com sucesso
+// ─────────────────────────────────────────────
+describe("registarUtilizador – sucesso", () => {
+
+  const repoEmailLivre: IUserRepository = {
+    // Simula: "e-mail livre, ninguém com este e-mail"
+    encontrarPorEmail: async () => null,
+    // Simula: "guardou e retornou o novo utilizador"
+    guardar: async (email, nome) => ({ id: 42, email, nome }),
+  };
+
+  let nomeNaBoasVindas = "";
+  const emailCaptor: IEmailService = {
+    // Captura o nome para verificarmos depois
+    enviarBoasVindas: async (_email, nome) => { nomeNaBoasVindas = nome; },
+  };
+
+  test("deve retornar sucesso = true e o utilizador criado", async () => {
+    const resultado = await registarUtilizador(
+      "novo@exemplo.com", "Carlos",
+      repoEmailLivre,
+      emailCaptor
+    );
+    expect(resultado.sucesso).toBe(true);
+    expect(resultado.utilizador?.nome).toBe("Carlos");
+    expect(resultado.utilizador?.id).toBe(42);
+  });
+
+  test("deve enviar e-mail ao nome correto", async () => {
+    nomeNaBoasVindas = "";
+    await registarUtilizador(
+      "novo@exemplo.com", "Carlos",
+      repoEmailLivre,
+      emailCaptor
+    );
+    expect(nomeNaBoasVindas).toBe("Carlos");
+  });
+});`}
+						/>
+					</Box>
+				</div>
+
+				{/* Reflexão final */}
+				<Box className='bg-zinc-950 border-4 border-zinc-800 text-white p-8'>
+					<h4 className='font-black uppercase text-lg mb-6 text-amber-400 tracking-widest'>
+						💡 O Que Este Exercício Demonstra
+					</h4>
+					<div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+						<div className='space-y-2'>
+							<span className='font-black uppercase text-xs bg-amber-400 text-black px-2 py-1'>
+								STUB
+							</span>
+							<p className='text-sm text-zinc-300'>
+								<code className='text-amber-300'>encontrarPorEmail</code>{" "}
+								devolve dados fixos. Não verifica nada — só alimenta a lógica.
+							</p>
+						</div>
+						<div className='space-y-2'>
+							<span className='font-black uppercase text-xs bg-primary text-white px-2 py-1'>
+								MOCK
+							</span>
+							<p className='text-sm text-zinc-300'>
+								<code className='text-primary'>emailEnviado</code> é uma
+								variável sentinela. Permite verificar <em>se</em> a função foi
+								chamada.
+							</p>
+						</div>
+						<div className='space-y-2'>
+							<span className='font-black uppercase text-xs bg-secondary text-white px-2 py-1'>
+								CAPTOR
+							</span>
+							<p className='text-sm text-zinc-300'>
+								<code className='text-secondary'>nomeNaBoasVindas</code> captura{" "}
+								<em>com que argumentos</em> a função foi chamada.
+							</p>
+						</div>
+					</div>
+					<p className='mt-8 text-center font-black uppercase italic text-amber-400 text-lg animate-pulse'>
+						Tudo isto sem uma única linha de framework de mocking!
+					</p>
+				</Box>
+			</section>
+
 			{/* RESUMO */}
 			<section className='my-32 p-16 bg-zinc-950 text-white border-8 border-primary shadow-[20px_20px_0px_0px_rgba(255,50,150,0.5)] relative overflow-hidden'>
 				<div className='absolute -right-20 -top-20 w-80 h-80 bg-primary/20 rounded-full blur-[100px]' />
@@ -303,42 +652,6 @@ export const data: ConferenciaData = {
 					))}
 				</div>
 			</section>
-
-			{/* EXERCÍCIO */}
-			<Box className='border-8 border-black dark:border-white p-16 bg-primary/5 mb-32 group hover:bg-primary/10 transition-colors'>
-				<h3 className='text-5xl font-black uppercase mb-10 flex items-center justify-between'>
-					EXERCÍCIO PRÁTICO
-					<span className='text-6xl animate-bounce'>🧪</span>
-				</h3>
-				<div className='space-y-8 text-xl font-medium leading-relaxed text-zinc-800 dark:text-zinc-200'>
-					<p>
-						Crie o sistema de biblioteca em{" "}
-						<code>src/modulo-03/sistema-biblioteca.test.ts</code>:
-					</p>
-					<ul className='space-y-4 font-bold uppercase text-sm tracking-tight'>
-						<li>
-							1. Defina interfaces para Repositório de Livros e Serviço de
-							Notificações.
-						</li>
-						<li>
-							2. Crie uma função <code>emprestarLivro</code> que injeta essas
-							dependências.
-						</li>
-						<li>
-							3. Implemente mocks manuais para cenários de "Livro Indisponível"
-							e "Sucesso".
-						</li>
-						<li>
-							4. Garanta que a notificação NÃO é enviada quando o empréstimo
-							falha.
-						</li>
-					</ul>
-					<div className='p-8 bg-zinc-950 text-white font-black italic uppercase tracking-tight text-center relative mt-10'>
-						"Prove que consegue controlar o comportamento da função SEM usar uma
-						base de dados real."
-					</div>
-				</div>
-			</Box>
 
 			{/* FOOTER */}
 			<div className='flex items-center justify-between border-t-8 border-black dark:border-white pt-12 pb-32 mb-20'>
