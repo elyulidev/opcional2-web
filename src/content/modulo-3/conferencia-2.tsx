@@ -150,7 +150,8 @@ fn.mock.results;
 								</h4>
 								<p className='text-sm text-zinc-500 mt-1'>
 									Define um valor padrão que é retornado em TODAS as chamadas.
-									Útil para simular um estado estável (ex: utilizador autenticado).
+									Útil para simular um estado estável (ex: utilizador
+									autenticado).
 								</p>
 							</div>
 						</div>
@@ -395,8 +396,9 @@ fn.mock.results[0].value; // "x1"`}
 				</div>
 
 				<Box className='border-4 border-black dark:border-white p-0 overflow-hidden shadow-brutalist'>
-					<div className='px-6 py-3 bg-black text-white dark:bg-white dark:text-black font-black uppercase text-sm break-words'>
-						Exemplo real — verificar que o email de auditoria foi enviado com os dados corretos
+					<div className='px-6 py-3 bg-black text-white dark:bg-white dark:text-black font-black uppercase text-sm wrap-break-word'>
+						Exemplo real — verificar que o email de auditoria foi enviado com os
+						dados corretos
 					</div>
 					<CodeBlock
 						language='typescript'
@@ -446,10 +448,9 @@ test("deve auditar com o id e valor corretos", async () => {
 							</h4>
 						</div>
 						<p className='text-sm mb-4'>
-							Limpa apenas o <strong>histórico</strong> (
-							<code>mock.calls</code>, <code>mock.results</code>). Os valores de
-							retorno configurados com <code>mockReturnValue</code> são
-							preservados.
+							Limpa apenas o <strong>histórico</strong> (<code>mock.calls</code>
+							, <code>mock.results</code>). Os valores de retorno configurados
+							com <code>mockReturnValue</code> são preservados.
 						</p>
 						<span className='inline-block text-[10px] bg-emerald-200 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-200 px-2 py-1 font-mono uppercase font-black'>
 							✅ Ideal para beforeEach
@@ -953,7 +954,8 @@ describe("processarPagamento – retry", () => {
 								toHaveBeenCalledWith
 							</span>
 							<p className='text-sm text-zinc-300'>
-								Verifica não apenas "foi chamado" mas "foi chamado corretamente".
+								Verifica não apenas "foi chamado" mas "foi chamado
+								corretamente".
 							</p>
 						</div>
 						<div className='space-y-2'>
