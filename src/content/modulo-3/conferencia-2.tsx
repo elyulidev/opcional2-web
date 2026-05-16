@@ -437,9 +437,9 @@ test("deve auditar com o id e valor corretos", async () => {
 					o anterior:
 				</p>
 
-				<div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8'>
+				<div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8 '>
 					<Box className='border-emerald-500 bg-emerald-50/10'>
-						<div className='flex items-center gap-2 mb-3'>
+						<div className='flex items-center gap-2 mb-3 overflow-x-auto'>
 							<span className='w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-black'>
 								1
 							</span>
@@ -462,7 +462,7 @@ test("deve auditar com o id e valor corretos", async () => {
 							<span className='w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-black'>
 								2
 							</span>
-							<h4 className='font-black uppercase text-xl text-amber-600 dark:text-amber-400'>
+							<h4 className='font-black uppercase text-xl text-amber-600 dark:text-amber-400 overflow-x-auto'>
 								mockReset()
 							</h4>
 						</div>
@@ -481,7 +481,7 @@ test("deve auditar com o id e valor corretos", async () => {
 							<span className='w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-black'>
 								3
 							</span>
-							<h4 className='font-black uppercase text-xl text-red-600 dark:text-red-400'>
+							<h4 className='font-black uppercase text-xl text-red-600 dark:text-red-400 overflow-x-auto'>
 								mockRestore()
 							</h4>
 						</div>
